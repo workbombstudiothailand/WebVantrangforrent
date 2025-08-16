@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
 import "./globals.css";
 import React from "react";
+import Script from 'next/script';
 
 const prompt = Prompt({
   subsets: ["latin", "thai"],
@@ -9,6 +10,7 @@ const prompt = Prompt({
   variable: "--font-prompt",
 });
 
+// We keep the metadata for SEO, but remove the 'icons' part to use the direct <link> method below.
 export const metadata: Metadata = {
   title: "รถตู้เช่าตรัง | รถตู้พร้อมคนขับมืออาชีพ",
   description: "🚐 เช่ารถตู้ตรัง กระบี่ พัทลุง สตูล นครศรีธรรมราช พร้อมคนขับมืออาชีพ ปลอดภัย ราคาเริ่มต้น 2,000 บาท/วัน บริการ 24 ชม. จองง่าย ได้เลย!",
@@ -49,7 +51,41 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="th">
-      <body className={prompt.className}>{children}</body>
+      <head>
+        {/* Force favicon update with direct link tags */}
+        <link rel="icon" href="/logo.jpg?v=2" sizes="any" />
+        <link rel="apple-touch-icon" href="/logo.jpg?v=2" />
+      </head>
+      <body className={prompt.className}>
+        {children}
+
+        {/* Messenger Chat Plugin Code */}
+        <div id="fb-root"></div>
+        <div id="fb-customer-chat" className="fb-customerchat"></div>
+
+        <Script id="messenger-chat-plugin" strategy="afterInteractive">
+          {`
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "100063753571328");
+            chatbox.setAttribute("attribution", "biz_inbox");
+
+            window.fbAsyncInit = function() {
+              FB.init({
+                xfbml            : true,
+                version          : 'v19.0'
+              });
+            };
+
+            (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = 'https://connect.facebook.net/th_TH/sdk/xfbml.customerchat.js';
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+          `}
+        </Script>
+      </body>
     </html>
   );
 }
