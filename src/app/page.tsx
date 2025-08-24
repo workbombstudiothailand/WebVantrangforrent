@@ -1,13 +1,31 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Star, Car } from 'lucide-react';
-import SEOContent from "@/components/SEOContent";
-import LazyImage from "@/components/LazyImage";
+
+// Dynamically import the CarSlider component
+const CarSlider = dynamic(() => import('../components/CarSlider'), {
+    loading: () => <p>Loading...</p>, // Optional loading component
+    ssr: false // Disable server-side rendering for this component as it's client-interactive
+});
 
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+    const [isSliderOpen, setIsSliderOpen] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('');
+
+    const openSlider = (category: string) => {
+        setSelectedCategory(category);
+        setIsSliderOpen(true);
+    };
+
+    const closeSlider = () => {
+        setIsSliderOpen(false);
+        setSelectedCategory('');
+    };
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
@@ -41,42 +59,45 @@ function App() {
 
     const services = [
         {
+            title: 'Toyota Commuter All new',
+            category: 'Commuter',
+            price: '2,500 บาท/วัน',
+            image: '/commuterold.jpg',
+            features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
+        },
+        {
             title: 'Toyota Hiace',
-            price: '1,800-2,500 บาท/วัน',
-            image: 'https://scontent.furt1-1.fna.fbcdn.net/v/t39.30808-6/495667152_1179297110876302_8503468669949750714_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=iSN0q9jlEI4Q7kNvwFT_qo4&_nc_oc=AdkmGqgVGihBJprHQNFUraFs5lcttEOwLO3SufT1Syg02D9XKWlknGqZmfXeQP4uJz0&_nc_zt=23&_nc_ht=scontent.furt1-1.fna&_nc_gid=BvJSmvpMW8P3QfoDgANIRQ&oh=00_AfVR3pqJkvpmJi-uTG73_auhxT7QyJtl9uN9f50g8P7B_g&oe=68A6344C',
-            features: ['เครื่องปรับอากาศ', 'เข็มขัดนิรภัยครบ', 'ประกันภัย', 'คนขับมืออาชีพ']
+            category: 'Hiace',
+            price: '1,800 - 2,000 บาท/วัน',
+            image: '/Hiace.jpg',
+            features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
         },
         {
-            title: 'Toyota Commuter',
-            price: '1,800-2,500 บาท/วัน',
-            image: 'https://scontent.furt1-1.fna.fbcdn.net/v/t39.30808-6/489309832_1152102630262417_2329648449049214639_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=AfPEDbTq8UMQ7kNvwFhl7mF&_nc_oc=AdnaUvvxyzI-1d1z4Q77_xyJ0J0EwpZUeUtpWpglIGIXFpTuvRpXnhCE4CGM-v7cASY&_nc_zt=23&_nc_ht=scontent.furt1-1.fna&_nc_gid=ixrTZ3IqC1Qiyp9kOVvcUA&oh=00_AfV960I3CRx2_kH8GenylsZmdJOjGoy0CZfFlYSdOEib-g&oe=68A659F5',
-            features: ['เครื่องปรับอากาศ', 'เข็มขัดนิรภัยครบ', 'ประกันภัย', 'คนขับมืออาชีพ']
-        },
-        {
-            title: 'รถตู้หรู VIP alphard',
-            price: '4,000-5,500 บาท/วัน',
-            image: 'https://scontent.furt1-1.fna.fbcdn.net/v/t39.30808-6/522275491_764678426119297_5968577651173260409_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=101&ccb=1-7&_nc_sid=454cf4&_nc_ohc=LGr9bm7rSr0Q7kNvwFNQDyO&_nc_oc=AdkUMP1AZZN7m0CcNF_ADaS-GKcjAxmap90fZ_ydCheAK1WZhC54AmxR5Z8VTNedrLw&_nc_zt=23&_nc_ht=scontent.furt1-1.fna&_nc_gid=WHnGqHU9vC0sKgVdUO1m6Q&oh=00_AfUggnNGKTQohyF45flh_xaaSuUOG1Irpl-_MplLj4TGEg&oe=68A64624',
-            features: ['หนังแท้', 'ระบบเสียงพรีเมียม', 'Wi-Fi', 'คนขับมืออาชีพ']
+            title: 'รถตู้หรู VIP Alphard',
+            category: 'vipAlphard',
+            price: '7,500 - 8,500 บาท/วัน',
+            image: '/alphardleft.jpg',
+            features: ['บริการดี', 'คนขับมืออาชีพ', 'รถสวย สะอาด นั่งสบาย มีระดับ', 'ใส่ใจลูกค้าตลอดการเดินทาง']
         }
     ];
 
     const testimonials = [
         {
-            name: 'คุณสมชาย วงศ์ใหญ่',
+            name: 'คุณสมชาย',
             location: 'กรุงเทพฯ',
             rating: 5,
             text: 'บริการดีมาก คนขับสุภาพ รถสะอาด เดินทางปลอดภัย แนะนำเลยครับ',
             trip: 'ทริปตรัง-กระบี่ 3 วัน 2 คืน'
         },
         {
-            name: 'คุณนันทนา สุขใส',
+            name: 'คุณนันทนา',
             location: 'เชียงใหม่',
             rating: 5,
             text: 'ประทับใจมากค่ะ คนขับรู้จักเส้นทางดี พาไปที่เที่ยวสวยๆ ราคาดีด้วย',
             trip: 'ทริปเกาะมุก-ถ้ำมรกต 2 วัน 1 คืน'
         },
         {
-            name: 'คุณปรีชา มั่นคง',
+            name: 'คุณปรีชา',
             location: 'สงขลา',
             rating: 5,
             text: 'ใช้บริการหลายรอบแล้ว บริการดีสม่ำเสมอ รถใหม่ สะอาด น่าเชื่อถือ',
@@ -95,7 +116,6 @@ function App() {
 
     return (
         <div className="min-h-screen bg-white">
-            <SEOContent />
             {/* Header */}
             <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,7 +150,7 @@ function App() {
                         {/* Contact Buttons */}
                         <div className="hidden md:flex items-center space-x-3">
                             <a
-                                href="tel:0812345678"
+                                href="tel:0991932345"
                                 className="flex items-center space-x-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-105"
                             >
                                 <Phone className="h-4 w-4" />
@@ -170,7 +190,7 @@ function App() {
                             ))}
                             <div className="pt-4 pb-2 space-y-2">
                                 <a
-                                    href="tel:0812345678"
+                                    href="tel:0991932345"
                                     className="flex items-center space-x-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-all duration-300 w-full justify-center transform hover:scale-105"
                                 >
                                     <Phone className="h-4 w-4" />
@@ -213,7 +233,20 @@ function App() {
                                 </button>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-8">
+                            <div className="mt-8 flex justify-center items-center gap-x-4">
+                                <Image
+                                    src="/sha.jpg"
+                                    alt="sha"
+                                    width={150}
+                                    height={150}/>
+                                <Image
+                                    src="/tat.png"
+                                    alt="tat"
+                                    width={150}
+                                    height={150}/>
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-8 mt-8">
                                 <div className="text-center">
                                     <div className="flex items-center justify-center w-12 h-12 bg-sky-100 rounded-lg mx-auto mb-2">
                                         <Shield className="h-6 w-6 text-sky-600" />
@@ -238,13 +271,15 @@ function App() {
                             </div>
                         </div>
 
-                        <div className="relative">
-                            <LazyImage
-                                src="https://scontent.furt1-1.fna.fbcdn.net/v/t39.30808-6/527891319_1249262003879812_6671555512280840570_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=zvmv1lK8pkkQ7kNvwGRJUkr&_nc_oc=AdmFaTWHL2H-NCLOzIDXqW-ME7pruWmoVCwo6DERt9R9WL8qyL1xQ9KiBUBohdYrP0g&_nc_zt=23&_nc_ht=scontent.furt1-1.fna&_nc_gid=AYbN-4bwv6H82_1-kKf_AQ&oh=00_AfWr0WNQ5ra1JgOV_aNWeJQAIiGw3dPD0IRpDEArCxusjQ&oe=68A63B4B"
+                        <div className="w-full rounded-lg shadow-lg overflow-hidden">
+                            <Image
+                                src="/prwebcorver.jpg"
                                 alt="รถตู้สำหรับเช่า"
-                                className="w-full h-96 object-cover rounded-2xl shadow-2xl transform transition-transform duration-500 hover:scale-105"
                                 width={800}
-                                height={384}
+                                height={450}
+                                className="w-full h-auto"
+                                priority
+                                sizes="(max-width: 1023px) 100vw, 50vw"
                             />
                         </div>
                     </div>
@@ -273,13 +308,18 @@ function App() {
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">บริการของเรา</h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                             <strong>ครบครันทุกความต้องการในการเดินทาง ด้วยรถตู้คุณภาพและคนขับมืออาชีพ</strong>
+                            <strong> รถตู้ของเราทุกคันได้รับการรับรองตามมาตรการความปลอดภัยด้านสาธารณสุข Amazing Thailand Safety and Health Administration (SHA)</strong>
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {services.map((service, index) => (
-                            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
-                                <LazyImage
+                            <div
+                                key={index}
+                                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
+                                onClick={() => openSlider(service.category)}
+                            >
+                                <Image
                                     src={service.image}
                                     alt={service.title}
                                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
@@ -298,10 +338,9 @@ function App() {
                                         ))}
                                     </ul>
                                     <button
-                                        onClick={() => scrollToSection('contact')}
-                                        className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition-all duration-300 font-medium transform hover:scale-105 active:scale-95"
+                                        className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition-all duration-300 font-medium"
                                     >
-                                        จองรถคันนี้
+                                        ดูรถของเรา
                                     </button>
                                 </div>
                             </div>
@@ -311,7 +350,7 @@ function App() {
                     <div className="mt-16 bg-gradient-to-r from-sky-600 to-blue-600 rounded-2xl p-8 text-center text-white">
                         <h3 className="text-2xl font-bold mb-4">อัตราค่าเช่า</h3>
                         <div className="grid grid-cols-1 ">
-                            <div className="text-align: center;">
+                            <div style={{textAlign: 'center'}}>
                                 <div>
                                     <p className="font-semibold ">วันละ 1,800-2,500 บาทโดยไม่รวมค่าน้ำมันและค่าธรรมเนียมหรือค่าผ่านทางต่างๆ</p>
                                 </div>
@@ -386,7 +425,7 @@ function App() {
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">จองรถตู้เช่า ติดต่อเรา</h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            พร้อมให้บริการและตอบทุกคำถาม <strong>จองรถตู้</strong>ได้ง่ายๆ โทร 099-193-2345
+                            พร้อมให้บริการและตอบทุกคำถาม <strong>จองรถตู้ </strong>โทร 099-193-2345 083-641-8519
                         </p>
                     </div>
 
@@ -411,7 +450,7 @@ function App() {
                                 </a>
 
                                 <a
-                                    href="https://line.me/ti/p/@trangvanservice"
+                                    href="http://line.me/ti/p/mNPO2-os_3"
                                     className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-all duration-300 transform hover:scale-105"
                                 >
                                     <div className="flex items-center justify-center w-12 h-12 bg-green-500 rounded-lg">
@@ -419,7 +458,7 @@ function App() {
                                     </div>
                                     <div>
                                         <p className="font-semibold text-gray-900">LINE</p>
-                                        <p className="text-green-600 font-medium">@momay</p>
+                                        <p className="text-green-600 font-medium">momay2659</p>
                                         <p className="text-sm text-gray-600">แชทสะดวก ตอบเร็ว</p>
                                     </div>
                                 </a>
@@ -454,15 +493,31 @@ function App() {
                             </div>
                         </div>
 
-                        {/* Booking Form */}
+                        {/* Pay Form */}
                         <div className="bg-gray-50 rounded-2xl p-8">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6">วิธีการชำระเงิน</h3>
-                            <div className="relative">
-                                <LazyImage
-                                    src="https://scontent.furt1-1.fna.fbcdn.net/v/t39.30808-6/533093658_745974261733621_4023997586728034975_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=20Snecf8Lt0Q7kNvwFi0Cwn&_nc_oc=AdlT6eKf_58O1EAQEfx9T5w_bZwBfSHYinYg0wofuJMu7vPT2Bzf9wDoc-9jp9HbGWI&_nc_zt=23&_nc_ht=scontent.furt1-1.fna&_nc_gid=-dfTwAa_EOiQxSuZDt6FBg&oh=00_AfUDVWUAtxV4OfKZ4m6C2js3TZcggDBsDneJag7MIFoI7w&oe=68A68350"
-                                    className="w-full h-115"
-                                    width={1000}
-                                    height={384} alt={""}/>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-6">วิธีการจองและชำระเงิน</h3>
+                            <div className="space-y-4 text-gray-700 leading-relaxed">
+                                <p>
+                                    สามารถติดต่อเราได้ตามช่องทางด้านล่างนี้เพื่อทำการจองและสอบถามข้อมูลเพิ่มเติม:
+                                </p>
+                                <ul className="list-none space-y-2 pl-4">
+                                    <li><strong>โทรศัพท์:</strong> <a href="tel:0991932345" className="text-sky-600 hover:underline">099-1932345</a> หรือ <a href="tel:0836418519" className="text-sky-600 hover:underline">083-6418519</a></li>
+                                    <li><strong>Line ID:</strong> momoy2659</li>
+                                </ul>
+                                <p>
+                                    เมื่อยืนยันการจองแล้ว ท่านจะได้รับข้อมูลเพื่อโอนเงินมัดจำจำนวน 50% ของยอดทั้งหมด
+                                </p>
+                                <div>
+                                    <h4 className="font-bold text-lg text-gray-800 mb-2">รายละเอียดการชำระเงินมัดจำ</h4>
+                                    <div className="bg-white p-4 rounded-lg border border-gray-200 space-y-1">
+                                        <p><strong>ชื่อบัญชี:</strong> นางสาวสุชาดา ชั้นสกุล</p>
+                                        <p><strong>เลขที่บัญชี:</strong> 916-018705-0</p>
+                                        <p><strong>ธนาคาร:</strong> ธนาคารกรุงไทย สาขาย่านตาขาว</p>
+                                    </div>
+                                </div>
+                                <p className="font-semibold text-sky-700 pt-2">
+                                    หลังจากโอนเงินเรียบร้อยแล้ว กรุณาแจ้งให้เราทราบ เพื่อที่เราจะได้เตรียมพร้อมสำหรับการให้บริการที่สุดแสนประทับใจสำหรับคุณค่ะ
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -479,7 +534,7 @@ function App() {
                                 <span className="text-xl font-bold">รถตู้เช่าตรัง</span>
                             </div>
                             <p className="text-gray-400 leading-relaxed">
-                                ให้เช่ารถตู้พร้อมคนขับ Vip 8,9 ที่นั่ง จังหวัดตรัง และ จังหวัดใกล้เคียง คิดถึง.คุณเมย์ 099-1932345
+                                ให้เช่ารถตู้พร้อมคนขับ Vip 8,9 ที่นั่ง จังหวัดตรัง และ จังหวัดใกล้เคียง โดย คุณเมย์ 099-1932345 คุณหนึ่ง 083-6418519
                             </p>
                         </div>
 
@@ -499,11 +554,12 @@ function App() {
                             <ul className="space-y-2 text-gray-400">
                                 <li className="flex items-center space-x-2">
                                     <Phone className="h-4 w-4" />
-                                    <span>099-193-2345</span>
+                                    <a href="tel:0991932345" className="hover:text-amber-400 transition-colors">099-193-2345</a>
+                                    <a href="tel:0836418519" className="hover:text-amber-400 transition-colors">083-641-8519</a>
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <MessageCircle className="h-4 w-4" />
-                                    <span>อีเมล: suchada_2659@hotmail.com</span>
+                                    <a href="mailto:suchada_2659@hotmail.com" className="hover:text-amber-400 transition-colors">suchada_2659@hotmail.com</a>
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <MapPin className="h-4 w-4" />
@@ -514,7 +570,7 @@ function App() {
                     </div>
 
                     <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                        <p>&copy; 2025 รถตู้เช่าตรัง สงวนลิขสิทธิ์.</p>
+                        <p>&copy; {new Date().getFullYear()} รถตู้เช่าตรัง สงวนลิขสิทธิ์.</p>
                     </div>
                 </div>
             </footer>
@@ -528,7 +584,7 @@ function App() {
                         <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
                     </svg>
                 </a>
-                <a href="https://www.facebook.com/andamanTrangThrawel"
+                <a href="https://www.facebook.com/messages/t/131791380352292"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 animate-pulse-soft"
@@ -540,6 +596,15 @@ function App() {
 
                 </a>
             </div>
+
+            {/* Conditionally render the CarSlider only when it's open */}
+            {isSliderOpen && (
+                <CarSlider
+                    isOpen={isSliderOpen}
+                    onClose={closeSlider}
+                    category={selectedCategory}
+                />
+            )}
         </div>
     );
 }

@@ -1,6 +1,4 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
     remotePatterns: [
       {
@@ -9,6 +7,21 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'scontent.furt1-1.fna.fbcdn.net',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+  devIndicators: {
+    allowedDevOrigins: [
+        'http://localhost:3000',
+        'https://www.vantrangforrent.com',
+        'http://192.168.0.109:3000',
+        'http://192.168.0.116:3000',
+        'http://192.168.0.117:3000',
     ],
   },
 };

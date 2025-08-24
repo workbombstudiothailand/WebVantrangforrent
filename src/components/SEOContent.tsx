@@ -1,3 +1,5 @@
+import React from "react";
+
 const SEOContent: React.FC = () => {
     return (
         <div className="sr-only">
