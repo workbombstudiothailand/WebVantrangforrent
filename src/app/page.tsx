@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Star, Car } from 'lucide-react';
+import FacebookPageIframe from '../components/FacebookPageIframe';
+import TikTokEmbed from '../components/TikTokEmbed';
 
 // Dynamically import the CarSlider component
 const CarSlider = dynamic(() => import('../components/CarSlider'), {
@@ -59,18 +61,18 @@ function App() {
 
     const services = [
         {
-            title: 'Toyota Commuter All new',
-            category: 'Commuter',
+            title: 'Toyota Hiace',
+            category: 'Hiace',
             price: '2,500 บาท/วัน',
-            image: '/commuterold.jpg',
+            image: '/Hiace.jpg',
             features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
         },
         {
-            title: 'Toyota Hiace',
-            category: 'Hiace',
+            title: 'Toyota Commuter All new',
+            category: 'Commuter',
             price: '1,800 - 2,000 บาท/วัน',
-            image: '/Hiace.jpg',
-            features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
+            image: '/commuterold.jpg',
+            features: ['9 ที่นั่ง', 'แอร์เย็น', 'เข็มขัดนิรภัย', 'ประกันภัย']
         },
         {
             title: 'รถตู้หรู VIP Alphard',
@@ -219,7 +221,7 @@ function App() {
                             <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                 <a
                                     href="tel:0991932345"
-                                    className="flex items-center justify-center space-x-2 bg-sky-600 text-white px-8 py-4 rounded-lg hover:bg-sky-700 transition-all duration-300 font-medium transform hover:scale-105 active:scale-95"
+                                    className="flex items-center justify-center space-x-2 bg-sky-600 text-white px-8 py-4 rounded-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-105"
                                 >
                                     <Phone className="h-5 w-5" />
                                     <span>โทรจองเลย 099-193-2345</span>
@@ -281,6 +283,7 @@ function App() {
                                 priority
                                 sizes="(max-width: 1023px) 100vw, 50vw"
                             />
+
                         </div>
                     </div>
 
@@ -367,7 +370,7 @@ function App() {
                                     <p className="font-semibold ">ส่วนวันเดินทางกลับ กำหนดให้มาถึงจุดหมายปลายทางไม่เกิน 20.00 น. หากเกิน 20.00 น. แต่ไม่เกิน 24.00 น. คิดราคาเพิ่มชั่วโมงละ 200.- บาท หากเกิน 24.00 น. ไปแล้ว แต่ไม่เกิน 02.00 น. คิดราคาเพิ่ม 1,000.- บาท หากเกินกว่านี้คิดราคาเป็น 1 วัน</p>
                                 </div>
                                 <div>
-                                    <p className="font-semibold ">อัตราค่าเช่ารถตู้รวมน้ำมัน สำหรับ รับ หรือ ส่ง ขาเดียว (โรงแรม/สนามบิน/ท่าเรือ) สอบถามได้ค่ะ</p>
+                                    <p className="font-semibold ">อัตราค่าเช่ารถตู้รวมน��ำมัน สำหรับ รับ หรือ ส่ง ขาเดียว (โรงแรม/สนามบิน/ท่าเรือ) สอบถามได้ค่ะ</p>
                                 </div>
                                 <div>
                                     <p className="font-semibold ">*กรณีค้างคืน (ค่าที่พักแล้วแต่ความกรุณาของลูกค้าค่ะ)*</p>
@@ -491,12 +494,17 @@ function App() {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Facebook Page Iframe under contact info */}
+                            <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[750px] h-[750px] flex items-center justify-center mx-auto">
+                                <FacebookPageIframe />
+                            </div>
                         </div>
 
                         {/* Pay Form */}
-                        <div className="bg-gray-50 rounded-2xl p-8">
+                        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col items-center">
                             <h3 className="text-2xl font-bold text-gray-900 mb-6">วิธีการจองและชำระเงิน</h3>
-                            <div className="space-y-4 text-gray-700 leading-relaxed">
+                            <div className="space-y-4 text-gray-700 leading-relaxed w-full">
                                 <p>
                                     สามารถติดต่อเราได้ตามช่องทางด้านล่างนี้เพื่อทำการจองและสอบถามข้อมูลเพิ่มเติม:
                                 </p>
@@ -516,8 +524,13 @@ function App() {
                                     </div>
                                 </div>
                                 <p className="font-semibold text-sky-700 pt-2">
-                                    หลังจากโอนเงินเรียบร้อยแล้ว กรุณาแจ้งให้เราทราบ เพื่อที่เราจะได้เตรียมพร้อมสำหรับการให้บริการที่สุดแสนประทับใจสำหรับคุณค่ะ
+                                    หลังจากโอนเงินเรียบร้อยแล้ว กรุณาแจ้งให้เราทราบ เพื่อที่เราจะได้เตรียมพร้อมสำหรับการให้บริการที่สุดแสนประทับใจสำหรับคุณ
                                 </p>
+                            </div>
+
+                            {/* TikTok Embed under pay form */}
+                            <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
+                                <TikTokEmbed />
                             </div>
                         </div>
                     </div>
@@ -534,7 +547,7 @@ function App() {
                                 <span className="text-xl font-bold">รถตู้เช่าตรัง</span>
                             </div>
                             <p className="text-gray-400 leading-relaxed">
-                                ให้เช่ารถตู้พร้อมคนขับ Vip 8,9 ที่นั่ง จังหวัดตรัง และ จังหวัดใกล้เคียง โดย คุณเมย์ 099-1932345 คุณหนึ่ง 083-6418519
+                                ให้เช่ารถตู้พร้อมคนขับ Vip 8,9 ที่นั่ง จังหวัดตรัง และ จังหวัดใกล้เคียง โดย คุณเมย์ 099-1932345 คุณหนึ่ง 083-641-8519
                             </p>
                         </div>
 
@@ -578,16 +591,16 @@ function App() {
             {/* Floating Contact Buttons */}
             <div className="fixed bottom-6 right-6 space-y-3 z-40">
                 <a href="http://line.me/ti/p/mNPO2-os_3"
-                    className="flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 animate-pulse-soft"
+                   className="flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 animate-pulse-soft"
                 >
                     <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
                     </svg>
                 </a>
                 <a href="https://www.facebook.com/messages/t/131791380352292"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 animate-pulse-soft"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center justify-center w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 animate-pulse-soft"
                 >
                     <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
                         <path

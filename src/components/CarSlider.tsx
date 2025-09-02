@@ -18,7 +18,7 @@ interface CarSliderProps {
 
 const carSlides: CarSlide[] = [
     // รถตู้ Toyota Commuter All new
-    { id: 1, image: "/commuterold .jpg", category: "Commuter" },
+    { id: 1, image: "/commuterold.jpg", category: "Commuter" },
     { id: 2, image: "/commuterold 5.jpg", category: "Commuter" },
     { id: 3, image: "/commuterold 6.jpg", category: "Commuter" },
     { id: 4, image: "/commuterold 7.jpg", category: "Commuter" },
