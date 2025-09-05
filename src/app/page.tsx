@@ -3,13 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Star, Car } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucide-react';
 import FacebookPageIframe from '../components/FacebookPageIframe';
 import TikTokEmbed from '../components/TikTokEmbed';
 
 // Dynamically import the CarSlider component
-const CarSlider = dynamic(() => import('../components/CarSlider'), {
-    loading: () => <p>Loading...</p>, // Optional loading component
+const CarSlider = dynamic(() => import('../components/CarSlider'), {// Optional loading component
     ssr: false // Disable server-side rendering for this component as it's client-interactive
 });
 
@@ -358,7 +357,7 @@ function App() {
                                     <p className="font-semibold ">ส่วนวันเดินทางกลับ กำหนดให้มาถึงจุดหมายปลายทางไม่เกิน 20.00 น. หากเกิน 20.00 น. แต่ไม่เกิน 24.00 น. คิดราคาเพิ่มชั่วโมงละ 200.- บาท หากเกิน 24.00 น. ไปแล้ว แต่ไม่เกิน 02.00 น. คิดราคาเพิ่ม 1,000.- บาท หากเกินกว่านี้คิดราคาเป็น 1 วัน</p>
                                 </div>
                                 <div>
-                                    <p className="font-semibold ">อัตราค่าเช่ารถตู้รวมน��ำมัน สำหรับ รับ หรือ ส่ง ขาเดียว (โรงแรม/สนามบิน/ท่าเรือ) สอบถามได้ค่ะ</p>
+                                    <p className="font-semibold ">อัตราค่าเช่ารถตู้รวมนํ้ามัน สำหรับ รับ หรือ ส่ง ขาเดียว (โรงแรม/สนามบิน/ท่าเรือ) สอบถามได้ค่ะ</p>
                                 </div>
                                 <div>
                                     <p className="font-semibold ">*กรณีค้างคืน (ค่าที่พักแล้วแต่ความกรุณาของลูกค้าค่ะ)*</p>
@@ -387,7 +386,7 @@ function App() {
                                     alt={`รีวิวลูกค้า ${index + 1}`}
                                     width={500}
                                     height={500}
-                                    className="object-cover w-full h-80 md:h-96 lg:h-[400px] group-hover:scale-105 transition-transform duration-300"
+                                    className="object-cover w-full h-80 md:h-96 lg:h-[405px] group-hover:scale-105 transition-transform duration-300"
                                     sizes="(max-width: 1023px) 100vw, 33vw"
                                 />
                             </div>
@@ -598,4 +597,3 @@ function App() {
 }
 
 export default App;
-
