@@ -19,6 +19,7 @@ const nextConfig = {
     allowedDevOrigins: [
         'http://localhost:3000',
         'https://www.vantrangforrent.com',
+        'http://119.59.120.13',
         'http://192.168.0.109:3000',
         'http://192.168.0.116:3000',
         'http://192.168.0.117:3000',
