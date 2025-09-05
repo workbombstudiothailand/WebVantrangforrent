@@ -521,7 +521,7 @@ function App() {
                                 <span className="text-xl font-bold">รถตู้เช่าตรัง</span>
                             </div>
                             <p className="text-gray-400 leading-relaxed">
-                                ให้เช่ารถตู้พร้อมคนขับ Vip 8,9 ที่นั่ง จังหวัดตรัง และ จังหวัดใกล้เคียง โดย คุณเมย์ 099-1932345 คุณหนึ่ง 083-641-8519
+                                ให้เช่ารถตู้พร้อมคนขับ Vip 8,9 ที่นั่ง จังหวัดตรัง และ จังหวัดใกล้เคียง โดย คุณเมย์ 099-1932345
                             </p>
                         </div>
 
@@ -550,7 +550,7 @@ function App() {
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <MapPin className="h-4 w-4" />
-                                    <span>17/18 ม.6 ต.บ้านควน อ.เมือง จ.ตรัง 92140</span>
+                                    <span>17/18 ม.6 ต.บ้านควน อ.เมือง จ.ตรัง 92000</span>
                                 </li>
                             </ul>
                         </div>
