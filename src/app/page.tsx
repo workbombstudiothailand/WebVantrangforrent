@@ -72,7 +72,7 @@ function App() {
             category: 'Commuter',
             price: '1,800 - 2,000 บาท/วัน',
             image: '/commuterold.jpg',
-            features: ['9 ที่นั่ง', 'แอร์เย็น', 'เข็มขัดนิรภัย', 'ประกันภัย']
+            features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
         },
         {
             title: 'รถตู้หรู VIP Alphard',
@@ -85,25 +85,13 @@ function App() {
 
     const testimonials = [
         {
-            name: 'คุณสมชาย',
-            location: 'กรุงเทพฯ',
-            rating: 5,
-            text: 'บริการดีมาก คนขับสุภาพ รถสะอาด เดินทางปลอดภัย แนะนำเลยครับ',
-            trip: 'ทริปตรัง-กระบี่ 3 วัน 2 คืน'
+            image: '/thkone.jpg'
         },
         {
-            name: 'คุณนันทนา',
-            location: 'เชียงใหม่',
-            rating: 5,
-            text: 'ประทับใจมากค่ะ คนขับรู้จักเส้นทางดี พาไปที่เที่ยวสวยๆ ราคาดีด้วย',
-            trip: 'ทริปเกาะมุก-ถ้ำมรกต 2 วัน 1 คืน'
+            image: '/thktwo.jpg'
         },
         {
-            name: 'คุณปรีชา',
-            location: 'สงขลา',
-            rating: 5,
-            text: 'ใช้บริการหลายรอบแล้ว บริการดีสม่ำเสมอ รถใหม่ สะอาด น่าเชื่อถือ',
-            trip: 'ทริปตรัง-พัทลุง 1 วัน'
+            image: '/thkthree.jpg'
         }
     ];
 
@@ -393,28 +381,15 @@ function App() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {testimonials.map((testimonial, index) => (
-                            <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{animationDelay: `${index * 0.2}s`}}>
-                                <div className="flex items-center mb-4">
-                                    <div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mr-4">
-                                        <Users className="h-6 w-6 text-sky-600" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                                        <p className="text-sm text-gray-600">{testimonial.location}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center mb-3">
-                                    {[...Array(testimonial.rating)].map((_, starIndex) => (
-                                        <Star key={starIndex} className="h-5 w-5 text-yellow-400 fill-current" />
-                                    ))}
-                                </div>
-
-                                <p className="text-gray-700 mb-4 leading-relaxed">"{testimonial.text}"</p>
-
-                                <div className="border-t pt-4">
-                                    <p className="text-sm font-medium text-sky-600">{testimonial.trip}</p>
-                                </div>
+                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group" style={{animationDelay: `${index * 0.2}s`}}>
+                                <Image
+                                    src={testimonial.image}
+                                    alt={`รีวิวลูกค้า ${index + 1}`}
+                                    width={500}
+                                    height={500}
+                                    className="object-cover w-full h-80 md:h-96 lg:h-[400px] group-hover:scale-105 transition-transform duration-300"
+                                    sizes="(max-width: 1023px) 100vw, 33vw"
+                                />
                             </div>
                         ))}
                     </div>
@@ -623,3 +598,4 @@ function App() {
 }
 
 export default App;
+
