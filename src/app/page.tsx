@@ -90,7 +90,10 @@ function App() {
             image: '/thktwo.jpg'
         },
         {
-            image: '/thkthree.jpg'
+            image: '/thkthreee.jpg'
+        },
+        {
+            image: '/thkfour.jpg'
         }
     ];
 
@@ -378,16 +381,15 @@ function App() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 grid-cols-3 gap-7">
                         {testimonials.map((testimonial, index) => (
-                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group" style={{animationDelay: `${index * 0.2}s`}}>
+                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group flex items-center justify-center" style={{animationDelay: `${index * 0.2}s`}}>
                                 <Image
                                     src={testimonial.image}
                                     alt={`รีวิวลูกค้า ${index + 1}`}
-                                    width={500}
-                                    height={500}
-                                    className="object-cover w-full h-80 md:h-96 lg:h-[405px] group-hover:scale-105 transition-transform duration-300"
-                                    sizes="(max-width: 1023px) 100vw, 33vw"
+                                    width={400}
+                                    height={300}
+                                    sizes="(max-width: 1000px) 200vw, 40vw"
                                 />
                             </div>
                         ))}
@@ -597,3 +599,4 @@ function App() {
 }
 
 export default App;
+
