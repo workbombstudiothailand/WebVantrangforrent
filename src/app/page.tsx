@@ -93,7 +93,6 @@ function App() {
             image: '/thkfour.jpg'
         },
     ];
-
     const destinations = [
         'ตรัง',
         'กระบี่',
@@ -597,4 +596,3 @@ function App() {
 }
 
 export default App;
-
