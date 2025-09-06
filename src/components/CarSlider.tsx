@@ -17,29 +17,31 @@ interface CarSliderProps {
 }
 
 const carSlides: CarSlide[] = [
-    // รถตู้ Toyota Commuter All new
-    { id: 1, image: "/commuterold.jpg", category: "Commuter" },
-    { id: 2, image: "/commuterold 5.jpg", category: "Commuter" },
-    { id: 3, image: "/commuterold 6.jpg", category: "Commuter" },
-    { id: 4, image: "/commuterold 7.jpg", category: "Commuter" },
-    { id: 5, image: "/commuterold 8.jpg", category: "Commuter" },
-    { id: 6, image: "/commuterold 2.jpg", category: "Commuter" },
-    { id: 7, image: "/commuterold 3.jpg", category: "Commuter" },
-    { id: 8, image: "/commuterold 4.jpg", category: "Commuter" },
+    // รถตู้ 13 ที่นั่ง
+    { id: 1, image: "/cars/13-seater/1.jpg", category: "13-seater" },
+    { id: 2, image: "/cars/13-seater/2.jpg", category: "13-seater" },
+    { id: 3, image: "/cars/13-seater/3.jpg", category: "13-seater" },
+    { id: 4, image: "/cars/13-seater/4.jpg", category: "13-seater" },
+    { id: 5, image: "/cars/13-seater/5.jpg", category: "13-seater" },
+    { id: 6, image: "/cars/13-seater/6.jpg", category: "13-seater" },
+    { id: 7, image: "/cars/13-seater/7.jpg", category: "13-seater" },
+    { id: 8, image: "/cars/13-seater/8.jpg", category: "13-seater" },
 
-    // รถตู้ Toyota Hiace
-    { id: 9, image: "/Hiace.jpg", category: "Hiace" },
-    { id: 10, image: "/Hiace2.jpg", category: "Hiace" },
-    { id: 11, image: "/Hiace3.jpg", category: "Hiace" },
-    { id: 12, image: "/Hiace4.jpg", category: "Hiace" },
-    { id: 13, image: "/Hiace5.jpg", category: "Hiace" },
-    { id: 14, image: "/Hiace6.jpg", category: "Hiace" },
-    { id: 15, image: "/Hiace7.jpg", category: "Hiace" },
-    { id: 16, image: "/Hiace8.jpg", category: "Hiace" },
+    // รถตู้ 9 ที่นั่ง
+    { id: 9, image: "/cars/9-seater/1.jpg", category: "9-seater" },
+    { id: 10, image: "/cars/9-seater/2.jpg", category: "9-seater" },
+    { id: 11, image: "/cars/9-seater/3.jpg", category: "9-seater" },
+    { id: 12, image: "/cars/9-seater/4.jpg", category: "9-seater" },
+    { id: 13, image: "/cars/9-seater/5.jpg", category: "9-seater" },
+    { id: 14, image: "/cars/9-seater/6.jpg", category: "9-seater" },
+    { id: 15, image: "/cars/9-seater/7.jpg", category: "9-seater" },
+    { id: 16, image: "/cars/9-seater/8.jpg", category: "9-seater" },
 
-    // รถตู้ vipAlphard
-    { id: 17, image: "/alphardleft.jpg", category: "vipAlphard" },
-    { id: 18, image: "/alphardright.jpg", category: "vipAlphard" },
+    // รถตู้ VIP
+    { id: 17, image: "/cars/vip/1.jpg", category: "vip" },
+    { id: 18, image: "/cars/vip/2.jpg", category: "vip" },
+    { id: 19, image: "/cars/vip/3.jpg", category: "vip" },
+    { id: 20, image: "/cars/vip/4.jpg", category: "vip" },
 ];
 
 const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
@@ -86,7 +88,7 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
     };
 
     const handleLineBooking = () => {
-        const carTypeName = category === 'Toyota Commuter All new' ? 'Toyota Commuter All new' : category === 'Toyota Hiace' ? 'Toyota Hiace' : 'รถตู้หรู VIP Alphard';
+        const carTypeName = category === '13-seater' ? 'รถตู้ 13 ที่นั่ง' : category === '9-seater' ? 'รถตู้ 9 ที่นั่ง' : 'รถตู้ VIP';
         const message = `สวัสดีครับ! สนใจจอง${carTypeName}`;
         const lineUrl = `http://line.me/ti/p/mNPO2-os_3?text=${encodeURIComponent(message)}`;
         window.open(lineUrl, '_blank');
@@ -124,9 +126,9 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
                                 <Image
                                     src={slide.image}
                                     alt={`รูปภาพรถตู้ ${category} #${slide.id}`}
-                                    layout="fill"
-                                    objectFit="contain"
-                                    className="transition-transform duration-700"
+                                    fill
+                                    sizes="100vw"
+                                    className="object-contain transition-transform duration-700"
                                 />
                             </div>
                         ))}
