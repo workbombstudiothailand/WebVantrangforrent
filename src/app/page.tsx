@@ -4,12 +4,21 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucide-react';
-import FacebookPageIframe from '../components/FacebookPageIframe';
-import TikTokEmbed from '../components/TikTokEmbed';
+import { services, testimonials, destinations } from './data'; // Import data from data.ts
 
-// Dynamically import the CarSlider component
-const CarSlider = dynamic(() => import('../components/CarSlider'), {// Optional loading component
-    ssr: false // Disable server-side rendering for this component as it's client-interactive
+// Dynamically import components for better performance
+const CarSlider = dynamic(() => import('../components/CarSlider'), {
+    ssr: false
+});
+
+const FacebookPageIframe = dynamic(() => import('../components/FacebookPageIframe'), {
+    ssr: false,
+    loading: () => <div className="w-full h-[750px] bg-gray-200 animate-pulse flex items-center justify-center"><p className="text-gray-500">Loading Facebook...</p></div>
+});
+
+const TikTokEmbed = dynamic(() => import('../components/TikTokEmbed'), {
+    ssr: false,
+    loading: () => <div className="w-full h-[780px] bg-gray-200 animate-pulse flex items-center justify-center"><p className="text-gray-500">Loading TikTok...</p></div>
 });
 
 function App() {
@@ -57,50 +66,6 @@ function App() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    const services = [
-        {
-            title: 'Toyota Hiace',
-            category: 'Hiace',
-            price: '2,500 บาท/วัน',
-            image: '/Hiace.jpg',
-            features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
-        },
-        {
-            title: 'Toyota Commuter All new',
-            category: 'Commuter',
-            price: '1,800 - 2,000 บาท/วัน',
-            image: '/commuterold.jpg',
-            features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
-        },
-        {
-            title: 'รถตู้หรู VIP Alphard',
-            category: 'vipAlphard',
-            price: '7,500 - 8,500 บาท/วัน',
-            image: '/alphardleft.jpg',
-            features: ['บริการดี', 'คนขับมืออาชีพ', 'รถสวย สะอาด นั่งสบาย มีระดับ', 'ใส่ใจลูกค้าตลอดการเดินทาง']
-        }
-    ];
-
-    const testimonials = [
-        {
-            image: '/thkone.jpg'
-        },
-        {
-            image: '/thktwo.jpg'
-        },
-        {
-            image: '/thkfour.jpg'
-        },
-    ];
-    const destinations = [
-        'ตรัง',
-        'กระบี่',
-        'พัทลุง',
-        'สตูล',
-        'สงขลา',
-        'นครศรีธรรมราช'
-    ];
 
     return (
         <div className="min-h-screen bg-white">
@@ -189,7 +154,6 @@ function App() {
                     </div>
                 )}
             </header>
-
             {/* Hero Section */}
             <section id="home" className="pt-16 bg-gradient-to-br from-sky-50 to-blue-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -269,7 +233,6 @@ function App() {
                                 priority
                                 sizes="(max-width: 1023px) 100vw, 50vw"
                             />
-
                         </div>
                     </div>
 
@@ -281,15 +244,14 @@ function App() {
                                     key={index}
                                     className="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium text-sky-600 border border-sky-200 shadow-sm"
                                 >
-                  <MapPin className="h-4 w-4 mr-2" />
+                                  <MapPin className="h-4 w-4 mr-2" />
                                     {destination}
-                </span>
+                                </span>
                             ))}
                         </div>
                     </div>
                 </div>
             </section>
-
             {/* Services Section */}
             <section id="services" className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -366,7 +328,6 @@ function App() {
                     </div>
                 </div>
             </section>
-
             {/* Testimonials Section */}
             <section id="testimonials" className="py-20 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -377,16 +338,16 @@ function App() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                    <div className="flex flex-wrap justify-center gap-8">
                         {testimonials.map((testimonial, index) => (
-                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group flex items-center justify-center" style={{animationDelay: `${index * 0.2}s`}}>
+                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group w-full max-w-sm" style={{animationDelay: `${index * 0.2}s`}}>
                                 <Image
                                     src={testimonial.image}
                                     alt={`รีวิวลูกค้า ${index + 1}`}
                                     width={500}
                                     height={500}
-                                    className="w-full h-auto mx-auto block"
-                                    sizes="(max-width: 1023px) 100vw, 33vw"
+                                    className="w-full h-auto object-contain"
+                                    sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                                 />
                             </div>
                         ))}
@@ -394,7 +355,6 @@ function App() {
 
                 </div>
             </section>
-
             {/* Contact Section */}
             <section id="contact" className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -474,42 +434,44 @@ function App() {
                             </div>
                         </div>
 
-                        {/* Pay Form */}
-                        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col items-center">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6">วิธีการจองและชำระเงิน</h3>
-                            <div className="space-y-4 text-gray-700 leading-relaxed w-full">
-                                <p>
-                                    สามารถติดต่อเราได้ตามช่องทางด้านล่างนี้เพื่อทำการจองและสอบถามข้อมูลเพิ่มเติม:
-                                </p>
-                                <ul className="list-none space-y-2 pl-4">
-                                    <li><strong>โทรศัพท์:</strong> <a href="tel:0991932345" className="text-sky-600 hover:underline">099-1932345</a> หรือ <a href="tel:0836418519" className="text-sky-600 hover:underline">083-6418519</a></li>
-                                    <li><strong>Line ID:</strong> momoy2659</li>
-                                </ul>
-                                <p>
-                                    เมื่อยืนยันการจองแล้ว ท่านจะได้รับข้อมูลเพื่อโอนเงินมัดจำจำนวน 50% ของยอดทั้งหมด
-                                </p>
-                                <div>
-                                    <h4 className="font-bold text-lg text-gray-800 mb-2">รายละเอียดการชำระเงินมัดจำ</h4>
-                                    <div className="bg-white p-4 rounded-lg border border-gray-200 space-y-1">
-                                        <p><strong>ชื่อบัญชี:</strong> นางสาวสุชาดา ชั้นสกุล</p>
-                                        <p><strong>เลขที่บัญชี:</strong> 916-018705-0</p>
-                                        <p><strong>ธนาคาร:</strong> ธนาคารกรุงไทย สาขาย่านตาขาว</p>
-                                    </div>
-                                </div>
-                                <p className="font-semibold text-sky-700 pt-2">
-                                    หลังจากโอนเงินเรียบร้อยแล้ว กรุณาแจ้งให้เราทราบ เพื่อที่เราจะได้เตรียมพร้อมสำหรับการให้บริการที่สุดแสนประทับใจสำหรับคุณ
-                                </p>
+                        {/* Right Column: TikTok and Pay Form */}
+                        <div className="flex flex-col items-center">
+                            {/* TikTok Embed */}
+                            <div className="rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
+                                <TikTokEmbed />
                             </div>
 
-                            {/* TikTok Embed under pay form */}
-                            <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
-                                <TikTokEmbed />
+                            {/* Pay Form */}
+                            <div className="mt-8 bg-gray-50 rounded-2xl p-8 w-full">
+                                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">วิธีการจองและชำระเงิน</h3>
+                                <div className="space-y-4 text-gray-700 leading-relaxed">
+                                    <p>
+                                        สามารถติดต่อเราได้ตามช่องทางด้านล่างนี้เพื่อทำการจองและสอบถามข้อมูลเพิ่มเติม:
+                                    </p>
+                                    <ul className="list-none space-y-2 pl-4">
+                                        <li><strong>โทรศัพท์:</strong> <a href="tel:0991932345" className="text-sky-600 hover:underline">099-1932345</a> หรือ <a href="tel:0836418519" className="text-sky-600 hover:underline">083-6418519</a></li>
+                                        <li><strong>Line ID:</strong> momoy2659</li>
+                                    </ul>
+                                    <p>
+                                        เมื่อยืนยันการจองแล้ว ท่านจะได้รับข้อมูลเพื่อโอนเงินมัดจำจำนวน 50% ของยอดทั้งหมด
+                                    </p>
+                                    <div>
+                                        <h4 className="font-bold text-lg text-gray-800 mb-2">รายละเอียดการชำระเงินมัดจำ</h4>
+                                        <div className="bg-white p-4 rounded-lg border border-gray-200 space-y-1">
+                                            <p><strong>ชื่อบัญชี:</strong> นางสาวสุชาดา ชั้นสกุล</p>
+                                            <p><strong>เลขที่บัญชี:</strong> 916-018705-0</p>
+                                            <p><strong>ธนาคาร:</strong> ธนาคารกรุงไทย สาขาย่านตาขาว</p>
+                                        </div>
+                                    </div>
+                                    <p className="font-semibold text-sky-700 pt-2">
+                                        หลังจากโอนเงินเรียบร้อยแล้ว กรุณาแจ้งให้เราทราบ เพื่อที่เราจะได้เตรียมพร้อมสำหรับการให้บริการที่สุดแสนประทับใจสำหรับคุณ
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -560,7 +522,6 @@ function App() {
                     </div>
                 </div>
             </footer>
-
             {/* Floating Contact Buttons */}
             <div className="fixed bottom-6 right-6 space-y-3 z-40">
                 <a href="https://line.me/ti/p/mNPO2-os_3"
