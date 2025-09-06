@@ -1,8 +1,8 @@
 import { Prompt } from "next/font/google";
 import "./globals.css";
 import React from "react";
-import MessengerChat from "../components/MessengerChat";
-import { metadata, jsonLd } from "./data";
+import { metadata, jsonLd } from "./data"; // Import metadata and jsonLd from data.ts
+import MessengerChat from "../components/MessengerChat"; // Import MessengerChat directly
 
 const prompt = Prompt({
   subsets: ["latin", "thai"],
@@ -26,11 +26,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-
         {/* Force favicon update with direct link tags */}
         <link rel="icon" href="/logo.jpg?v=2" sizes="any" />
         <link rel="apple-touch-icon" href="/logo.jpg?v=2" />
-          <title></title>
       </head>
       <body className={prompt.className}>
         {children}

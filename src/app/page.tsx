@@ -426,7 +426,7 @@ function App() {
                                 </a>
 
                                 <a
-                                    href="http://line.me/ti/p/mNPO2-os_3"
+                                    href="https://line.me/ti/p/mNPO2-os_3"
                                     className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-all duration-300 transform hover:scale-105"
                                 >
                                     <div className="flex items-center justify-center w-12 h-12 bg-green-500 rounded-lg">
@@ -563,7 +563,7 @@ function App() {
 
             {/* Floating Contact Buttons */}
             <div className="fixed bottom-6 right-6 space-y-3 z-40">
-                <a href="http://line.me/ti/p/mNPO2-os_3"
+                <a href="https://line.me/ti/p/mNPO2-os_3"
                    className="flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 animate-pulse-soft"
                 >
                     <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">

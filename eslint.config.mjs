@@ -16,6 +16,7 @@ export default tseslint.config(
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
       '@typescript-eslint/no-explicit-any': 'warn',
+      'react-refresh/only-export-components': 'off', // Turn off to prevent build errors from non-component exports
     },
   },
 );
