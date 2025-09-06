@@ -90,11 +90,8 @@ function App() {
             image: '/thktwo.jpg'
         },
         {
-            image: '/thkthree.jpg'
-        },
-        {
             image: '/thkfour.jpg'
-        }
+        },
     ];
 
     const destinations = [
