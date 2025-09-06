@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import Script from 'next/script';
 
+// Define the type for the Facebook SDK object
 declare global {
     interface Window {
         FB?: {
@@ -19,28 +21,15 @@ declare global {
 
 const MessengerChat: React.FC = () => {
   useEffect(() => {
+    // This function will be called once the SDK is loaded
     window.fbAsyncInit = function() {
       if (window.FB) {
         window.FB.init({
           xfbml: true,
           version: 'v19.0'
         });
-        window.FB.XFBML.parse();
       }
     };
-
-    if (!document.getElementById('facebook-jssdk')) {
-      const script = document.createElement('script');
-      script.id = 'facebook-jssdk';
-      script.src = 'https://connect.facebook.net/th_TH/sdk/xfbml.customerchat.js';
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    } else {
-        if (window.FB) {
-            window.FB.XFBML.parse();
-        }
-    }
   }, []);
 
   return (
@@ -55,6 +44,16 @@ const MessengerChat: React.FC = () => {
         data-logged-out-greeting="สวัสดีครับ! สนใจเช่ารถตู้หรือมีคำถามอะไรไหมครับ? 🚐"
         data-greeting-dialog-display="show"
         data-greeting-dialog-delay="3"
+      />
+      <Script 
+        id="facebook-jssdk" 
+        src="https://connect.facebook.net/th_TH/sdk/xfbml.customerchat.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          if (window.FB) {
+            window.FB.XFBML.parse();
+          }
+        }}
       />
     </>
   );
