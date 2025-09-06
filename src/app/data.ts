@@ -42,3 +42,57 @@ export const destinations = [
     'สงขลา',
     'นครศรีธรรมราช'
 ];
+
+export const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'RentACarStore',
+  name: 'รถตู้เช่าตรัง',
+  description: 'บริการรถตู้เช่าตรังพร้อมคนขับมืออาชีพ สำหรับท่องเที่ยว รับส่งสนามบิน และเดินทางทั่วภาคใต้ ปลอดภัย รถใหม่สะอาด บริการ 24 ชั่วโมง',
+  url: 'https://www.vantrangforrent.com/',
+  telephone: '+66991932345',
+  email: 'suchada_2659@hotmail.com',
+  image: 'https://www.vantrangforrent.com/logo.jpg',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '17/18 ม.6 ต.บ้านควน',
+    addressLocality: 'เมือง',
+    addressRegion: 'ตรัง',
+    postalCode: '92140',
+    addressCountry: 'TH',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '7.526626789744298',
+    longitude: '99.63583351308235',
+  },
+  priceRange: '1800 - 5500 THB',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  ],
+  areaServed: [
+    'Trang',
+    'Krabi',
+    'Phatthalung',
+    'Satun',
+    'Songkhla',
+    'Nakhon Si Thammarat',
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '3', // Based on initial testimonials
+  },
+};
