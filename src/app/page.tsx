@@ -362,7 +362,7 @@ function App() {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="note">
+                            <div className="flex justify-center">
                                 *กรณีค้างคืน (ค่าที่พักแล้วแต่ความกรุณาของลูกค้าค่ะ)*
                             </div>
                         </div>
