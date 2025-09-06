@@ -6,9 +6,10 @@ import dynamic from 'next/dynamic';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucide-react';
 import { services, testimonials, destinations } from './data'; // Import data from data.ts
 
-// Dynamically import components for better performance
+// Dynamically import components for better performance and to avoid SSR issues
 const CarSlider = dynamic(() => import('../components/CarSlider'), {
-    ssr: false
+    ssr: false,
+    loading: () => <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"><p className="text-white">Loading Slider...</p></div>
 });
 
 const FacebookPageIframe = dynamic(() => import('../components/FacebookPageIframe'), {
@@ -298,31 +299,71 @@ function App() {
                         ))}
                     </div>
 
-                    <div className="mt-16 bg-gradient-to-r from-sky-600 to-blue-600 rounded-2xl p-8 text-center text-white">
-                        <h3 className="text-2xl font-bold mb-4">อัตราค่าเช่า</h3>
-                        <div className="grid grid-cols-1 ">
-                            <div style={{textAlign: 'center'}}>
-                                <div>
-                                    <p className="font-semibold ">วันละ 1,800-2,500 บาทโดยไม่รวมค่าน้ำมันและค่าธรรมเนียมหรือค่าผ่านทางต่างๆ</p>
+                    <div className="mt-16 bg-gradient-to-r from-sky-600 to-blue-600 rounded-2xl p-8 md:p-12 text-white">
+                        <h3 className="text-3xl font-bold mb-8 text-center">อัตราค่าเช่า</h3>
+                        <div className="max-w-4xl mx-auto space-y-8">
+                            <div className="md:flex md:gap-8 space-y-8 md:space-y-0">
+                                <div className="flex-1 bg-white/10 rounded-lg p-6">
+                                    <h4 className="text-xl font-bold mb-3">ค่าเช่ารายวัน</h4>
+                                    <ul className="space-y-2">
+                                        <li><span className="font-semibold text-sky-300">อัตราค่าเช่า:</span> <span
+                                            className="font-bold">1,800 - 2,500 บาท/วัน</span></li>
+                                        <li><span className="font-semibold text-sky-300">ไม่รวม:</span> ค่าน้ำมัน,
+                                            ค่าธรรมเนียม, และค่าผ่านทางต่างๆ
+                                        </li>
+                                        <li><span className="font-semibold text-sky-300">สำหรับหมู่คณะ:</span> สามารถ<a
+                                            href="#contact"
+                                            className="underline hover:text-sky-200">ติดต่อเพื่อต่อรองราคา</a>กับเราได้โดยตรง
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div>
-                                    <p className="font-semibold ">(ต้องการไปเป็นหมู่คณะสามารถคุยต่อรองราคากับทางเราได้ค่ะ)</p>
+                                <div className="flex-1 bg-white/10 rounded-lg p-6">
+                                    <h4 className="text-xl font-bold mb-3">ค่าเช่ารถตู้รวมน้ำมัน</h4>
+                                    <ul className="space-y-2">
+                                        <li><span className="font-semibold text-sky-300">สำหรับบริการ:</span> รับ หรือ
+                                            ส่ง เพียงขาเดียว (โรงแรม/สนามบิน/ท่าเรือ)
+                                        </li>
+                                        <li><span
+                                            className="font-semibold text-sky-300">เงื่อนไข:</span> กรุณาสอบถามอัตราค่าบริการได้โดยตรง
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div>
-                                    <p className="font-semibold ">เวลาในการเช่ารถตู้</p>
+                            </div>
+                            <div className="md:flex md:gap-8 space-y-8 md:space-y-0">
+                                <div className="flex-1 bg-white/10 rounded-lg p-6">
+                                    <h4 className="text-xl font-bold mb-3">ระยะเวลาให้บริการ</h4>
+                                    <ul className="space-y-2">
+                                        <li><span className="font-semibold text-sky-300">เวลาปกติ:</span> 06:00 - 20:00
+                                            น.
+                                        </li>
+                                        <li><span
+                                            className="font-semibold text-sky-300">การรับก่อนเวลา:</span> หากต้องการให้รับก่อน
+                                            06:00 น. กรุณาแจ้งให้ทราบล่วงหน้าในวันที่จอง
+                                        </li>
+                                        <li><span
+                                            className="font-semibold text-sky-300">การเดินทางกลับ:</span> กำหนดให้ถึงปลายทางไม่เกิน
+                                            20:00 น.
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div>
-                                    <p className="font-semibold ">เริ่มตั้งแต่ 06.00-20.00 น. หากลูกค้าต้องการให้รับก่อน 06.00 น.กรุณาแจ้งให้ทราบในวันที่ท่านจองรถ</p>
+                                <div className="flex-1 bg-white/10 rounded-lg p-6">
+                                    <h4 className="text-xl font-bold mb-3">ค่าบริการล่วงเวลา</h4>
+                                    <ul className="space-y-2">
+                                        <li><span
+                                            className="font-semibold text-sky-300">20:01 - 24:00 น.:</span> คิดเพิ่มชั่วโมงละ <span
+                                            className="font-bold">200 บาท</span></li>
+                                        <li><span
+                                            className="font-semibold text-sky-300">หลัง 24:00 - 02:00 น.:</span> คิดเพิ่ม <span
+                                            className="font-bold">1,000 บาท</span></li>
+                                        <li><span
+                                            className="font-semibold text-sky-300">หลัง 02:00 น.:</span> คิดเป็นราคาเช่าเต็ม
+                                            1 วันเต็ม
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div>
-                                    <p className="font-semibold ">ส่วนวันเดินทางกลับ กำหนดให้มาถึงจุดหมายปลายทางไม่เกิน 20.00 น. หากเกิน 20.00 น. แต่ไม่เกิน 24.00 น. คิดราคาเพิ่มชั่วโมงละ 200.- บาท หากเกิน 24.00 น. ไปแล้ว แต่ไม่เกิน 02.00 น. คิดราคาเพิ่ม 1,000.- บาท หากเกินกว่านี้คิดราคาเป็น 1 วัน</p>
-                                </div>
-                                <div>
-                                    <p className="font-semibold ">อัตราค่าเช่ารถตู้รวมนํ้ามัน สำหรับ รับ หรือ ส่ง ขาเดียว (โรงแรม/สนามบิน/ท่าเรือ) สอบถามได้ค่ะ</p>
-                                </div>
-                                <div>
-                                    <p className="font-semibold ">*กรณีค้างคืน (ค่าที่พักแล้วแต่ความกรุณาของลูกค้าค่ะ)*</p>
-                                </div>
+                            </div>
+                            <div className="note">
+                                *กรณีค้างคืน (ค่าที่พักแล้วแต่ความกรุณาของลูกค้าค่ะ)*
                             </div>
                         </div>
                     </div>
@@ -434,14 +475,11 @@ function App() {
                             </div>
                         </div>
 
-                        {/* Right Column: TikTok and Pay Form */}
+                        {/* Right Column: Pay Form and TikTok Embed */}
                         <div className="flex flex-col items-center">
-                            {/* TikTok Embed */}
                             <div className="rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
                                 <TikTokEmbed />
                             </div>
-
-                            {/* Pay Form */}
                             <div className="mt-8 bg-gray-50 rounded-2xl p-8 w-full">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">วิธีการจองและชำระเงิน</h3>
                                 <div className="space-y-4 text-gray-700 leading-relaxed">

@@ -17,31 +17,30 @@ interface CarSliderProps {
 }
 
 const carSlides: CarSlide[] = [
-    // รถตู้ 13 ที่นั่ง
-    { id: 1, image: "/cars/13-seater/1.jpg", category: "13-seater" },
-    { id: 2, image: "/cars/13-seater/2.jpg", category: "13-seater" },
-    { id: 3, image: "/cars/13-seater/3.jpg", category: "13-seater" },
-    { id: 4, image: "/cars/13-seater/4.jpg", category: "13-seater" },
-    { id: 5, image: "/cars/13-seater/5.jpg", category: "13-seater" },
-    { id: 6, image: "/cars/13-seater/6.jpg", category: "13-seater" },
-    { id: 7, image: "/cars/13-seater/7.jpg", category: "13-seater" },
-    { id: 8, image: "/cars/13-seater/8.jpg", category: "13-seater" },
+    // Hiace
+    { id: 1, image: "/Hiace.jpg", category: "Hiace" },
+    { id: 2, image: "/Hiace2.jpg", category: "Hiace" },
+    { id: 3, image: "/Hiace3.jpg", category: "Hiace" },
+    { id: 4, image: "/Hiace4.jpg", category: "Hiace" },
+    { id: 5, image: "/Hiace5.jpg", category: "Hiace" },
+    { id: 6, image: "/Hiace6.jpg", category: "Hiace" },
+    { id: 7, image: "/Hiace7.jpg", category: "Hiace" },
+    { id: 8, image: "/Hiace8.jpg", category: "Hiace" },
 
-    // รถตู้ 9 ที่นั่ง
-    { id: 9, image: "/cars/9-seater/1.jpg", category: "9-seater" },
-    { id: 10, image: "/cars/9-seater/2.jpg", category: "9-seater" },
-    { id: 11, image: "/cars/9-seater/3.jpg", category: "9-seater" },
-    { id: 12, image: "/cars/9-seater/4.jpg", category: "9-seater" },
-    { id: 13, image: "/cars/9-seater/5.jpg", category: "9-seater" },
-    { id: 14, image: "/cars/9-seater/6.jpg", category: "9-seater" },
-    { id: 15, image: "/cars/9-seater/7.jpg", category: "9-seater" },
-    { id: 16, image: "/cars/9-seater/8.jpg", category: "9-seater" },
+    // Commuter
+    { id: 9, image: "/commuterold.jpg", category: "Commuter" },
+    { id: 10, image: "/commuterold 2.jpg", category: "Commuter" },
+    { id: 11, image: "/commuterold 3.jpg", category: "Commuter" },
+    { id: 12, image: "/commuterold 4.jpg", category: "Commuter" },
+    { id: 13, image: "/commuterold 5.jpg", category: "Commuter" },
+    { id: 14, image: "/commuterold 6.jpg", category: "Commuter" },
+    { id: 15, image: "/commuterold 7.jpg", category: "Commuter" },
+    { id: 16, image: "/commuterold 8.jpg", category: "Commuter" },
 
     // รถตู้ VIP
-    { id: 17, image: "/cars/vip/1.jpg", category: "vip" },
-    { id: 18, image: "/cars/vip/2.jpg", category: "vip" },
-    { id: 19, image: "/cars/vip/3.jpg", category: "vip" },
-    { id: 20, image: "/cars/vip/4.jpg", category: "vip" },
+    { id: 17, image: "/alphardleft.jpg", category: "vip" },
+    { id: 18, image: "/alphardright.jpg", category: "vip" },
+
 ];
 
 const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
@@ -88,7 +87,7 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
     };
 
     const handleLineBooking = () => {
-        const carTypeName = category === '13-seater' ? 'รถตู้ 13 ที่นั่ง' : category === '9-seater' ? 'รถตู้ 9 ที่นั่ง' : 'รถตู้ VIP';
+        const carTypeName = category === 'Hiace' ? 'รถตู้ Hiace' : category === 'Commuter' ? 'รถตู้ Commuter' : 'รถตู้ VIP';
         const message = `สวัสดีครับ! สนใจจอง${carTypeName}`;
         const lineUrl = `http://line.me/ti/p/mNPO2-os_3?text=${encodeURIComponent(message)}`;
         window.open(lineUrl, '_blank');

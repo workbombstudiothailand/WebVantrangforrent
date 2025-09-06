@@ -29,7 +29,6 @@ export default function RootLayout({
         {/* Force favicon update with direct link tags */}
         <link rel="icon" href="/logo.jpg?v=2" sizes="any" />
         <link rel="apple-touch-icon" href="/logo.jpg?v=2" />
-          <title></title>
       </head>
       <body className={prompt.className}>
         {children}

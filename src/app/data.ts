@@ -17,7 +17,7 @@ export const services = [
     },
     {
         title: 'รถตู้หรู VIP Alphard',
-        category: 'vipAlphard',
+        category: 'vip',
         price: '7,500 - 8,500 บาท/วัน',
         image: '/alphardleft.jpg',
         features: ['บริการดี', 'คนขับมืออาชีพ', 'รถสวย สะอาด นั่งสบาย มีระดับ', 'ใส่ใจลูกค้าตลอดการเดินทาง']
@@ -30,12 +30,6 @@ export const testimonials = [
     },
     {
         image: '/thktwo.jpg'
-    },
-    {
-        image: '/thktwo.jpg'
-    },
-    {
-        image: '/thkfour.jpg'
     },
     {
         image: '/thkfour.jpg'
