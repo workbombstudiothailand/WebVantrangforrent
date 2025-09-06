@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucide-react';
-import { services, testimonials, destinations } from './data'; // Import data from data.ts
+import { services, destinations } from './data'; // Import data from data.ts
 
 // Dynamically import components for better performance and to avoid SSR issues
 const CarSlider = dynamic(() => import('../components/CarSlider'), {
@@ -21,6 +21,25 @@ const TikTokEmbed = dynamic(() => import('../components/TikTokEmbed'), {
     ssr: false,
     loading: () => <div className="w-full h-[780px] bg-gray-200 animate-pulse flex items-center justify-center"><p className="text-gray-500">Loading TikTok...</p></div>
 });
+
+const testimonials = [
+        {
+            image: '/thkone.jpg',
+
+        },
+        {
+            image: '/thktwo.jpg',
+
+        },
+        {
+            image: '/thkthree.jpg',
+
+        },
+    {
+        image: '/thkfour.jpg',
+
+    }
+    ];
 
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -379,15 +398,15 @@ function App() {
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap justify-center gap-8">
+                    <div className="flex flex-row flex-wrap justify-center gap-8 image-row">
                         {testimonials.map((testimonial, index) => (
-                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group w-full max-w-sm" style={{animationDelay: `${index * 0.2}s`}}>
+                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group" style={{animationDelay: `${index * 0.2}s`, width: '500px', height: '400px', maxWidth: '100%'}}>
                                 <Image
                                     src={testimonial.image}
                                     alt={`รีวิวลูกค้า ${index + 1}`}
                                     width={500}
-                                    height={500}
-                                    className="w-full h-auto object-contain"
+                                    height={400}
+                                    className="w-full h-full object-contain"
                                     sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                                 />
                             </div>
@@ -531,7 +550,7 @@ function App() {
                                 <li>รถตู้ VIP 9 ที่นั่ง</li>
                                 <li>รถตู้หรู VIP alphard</li>
                                 <li>บริการรับส่งสนามบิน</li>
-                                <li>ทัวร์ท่องเที่ยวภาคใต้</li>
+                                <li>ทัวร์ท่องเที่ยวภา���ใต้</li>
                             </ul>
                         </div>
 
