@@ -34,3 +34,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## production
+
+Good news! After inspecting your build output, I found that static HTML files (such as index.html and _not-found.html) are being generated in the directory:
+.next/server/app/
+This means your Next.js static export is working, but the output is placed in .next/server/app/ instead of .next/output/ (which is a change in Next.js 15+ for app directory projects).
+What to do next:
+Use the contents of .next/server/app/ (including index.html, _not-found.html, and any other HTML/assets) for deployment.
+Upload these files (and any required static assets from .next/static/ and your public/ directory) to your hosting's public_html folder.
+Summary of deployment steps:
+Copy everything from .next/server/app/ to your hosting's public_html/.
+Also copy the contents of .next/static/ and your public/ directory to public_html/ as needed.
+Your site should now work as a static site on your shared hosting.
