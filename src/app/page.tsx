@@ -23,6 +23,12 @@ function App() {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        // This will run only on the client, after the component mounts
+        setIsMounted(true);
+    }, []);
 
     const openSlider = (category: string) => {
         setSelectedCategory(category);
@@ -469,15 +475,15 @@ function App() {
                             </div>
 
                             {/* Facebook Page Iframe under contact info */}
-                            <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[750px] h-[750px] flex items-center justify-center mx-auto">
-                                <FacebookPageIframe />
+                            <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 w-full h-[500px]">
+                                {isMounted ? <FacebookPageIframe /> : <div className="w-full h-full bg-gray-200 animate-pulse"/>}
                             </div>
                         </div>
 
                         {/* Right Column: Pay Form and TikTok Embed */}
                         <div className="flex flex-col items-center">
                             <div className="rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
-                                <TikTokEmbed />
+                                {isMounted ? <TikTokEmbed /> : <div className="w-full h-full bg-gray-200 animate-pulse"/>}
                             </div>
                             <div className="mt-8 bg-gray-50 rounded-2xl p-8 w-full">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">วิธีการจองและชำระเงิน</h3>
