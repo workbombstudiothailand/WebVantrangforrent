@@ -59,7 +59,7 @@ export const metadata: Metadata = {
         url: "https://www.vantrangforrent.com/prwebcorver.jpg",
         width: 800,
         height: 450,
-        alt: 'รถตู้เช่าตรังพร้อมคนขับ',
+        alt: 'ภาพประชาสัมพันธ์เว็บไซต์รถตู้เช่าตรัง',
       },
     ],
     locale: "th_TH",

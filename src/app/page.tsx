@@ -22,6 +22,7 @@ function App() {
     const [activeSection, setActiveSection] = useState('home');
     const [isSliderOpen, setIsSliderOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     const openSlider = (category: string) => {
         setSelectedCategory(category);
@@ -373,15 +374,19 @@ function App() {
                         </p>
                     </div>
 
-                    <div className="flex flex-row flex-wrap justify-center gap-8 image-row">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
                         {testimonials.map((testimonial, index) => (
-                            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group" style={{animationDelay: `${index * 0.2}s`, width: '500px', height: '400px', maxWidth: '100%'}}>
+                            <div 
+                                key={index} 
+                                className="group bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                                onClick={() => setSelectedImage(testimonial.image)}
+                            >
                                 <img
                                     src={testimonial.image}
-                                    alt={`รีวิวลูกค้า ${index + 1}`}
-                                    width="500"
-                                    height="400"
-                                    className="w-full h-full object-contain"
+                                    alt={`รีวิวจากลูกค้าคนที่ ${index + 1}`}
+                                    width="600"
+                                    height="600"
+                                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                                     loading="lazy"
                                 />
                             </div>
@@ -534,7 +539,7 @@ function App() {
                             <ul className="space-y-2 text-gray-400">
                                 <li className="flex items-center space-x-2">
                                     <Phone className="h-4 w-4" />
-                                    <a href="tel:0991932345" className="hover:text-amber-400 transition-colors">099-193-2345</a>
+                                    <a href="tel:0991932345" className="hover:text-amber-400 transition-colors">099-1932345</a>
                                     <a href="tel:0836418519" className="hover:text-amber-400 transition-colors">083-641-8519</a>
                                 </li>
                                 <li className="flex items-center space-x-2">
@@ -575,6 +580,28 @@ function App() {
 
                 </a>
             </div>
+
+            {/* Image Modal */}
+            {selectedImage && (
+                <div 
+                    className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 cursor-pointer"
+                    onClick={() => setSelectedImage(null)}
+                >
+                    <div className="relative max-w-4xl max-h-[90vh]">
+                        <img 
+                            src={selectedImage} 
+                            alt="รีวิวลูกค้าขนาดใหญ่" 
+                            className="w-auto h-auto max-w-full max-h-[90vh] object-contain"
+                        />
+                        <button 
+                            onClick={() => setSelectedImage(null)}
+                            className="absolute -top-2 -right-2 bg-white text-black p-2 rounded-full shadow-lg"
+                        >
+                            <X size={24} />
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Conditionally render the CarSlider only when it's open */}
             {isSliderOpen && (
