@@ -32,6 +32,9 @@ export const testimonials = [
         image: '/thktwo.jpg'
     },
     {
+        image: '/thkthree.jpg'
+    },
+    {
         image: '/thkfour.jpg'
     }
 ];
