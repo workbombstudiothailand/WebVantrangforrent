@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucide-react';
 import { services, destinations } from './data'; // Import data from data.ts
@@ -206,16 +205,16 @@ function App() {
                             </div>
 
                             <div className="mt-8 flex justify-center items-center gap-x-4">
-                                <Image
+                                <img
                                     src="/sha.jpg"
                                     alt="sha"
-                                    width={150}
-                                    height={150}/>
-                                <Image
+                                    width="150"
+                                    height="150"/>
+                                <img
                                     src="/tat.png"
                                     alt="tat"
-                                    width={150}
-                                    height={150}/>
+                                    width="150"
+                                    height="150"/>
                             </div>
 
                             <div className="grid grid-cols-3 gap-8 mt-8">
@@ -244,14 +243,12 @@ function App() {
                         </div>
 
                         <div className="w-full rounded-lg shadow-lg overflow-hidden">
-                            <Image
+                            <img
                                 src="/prwebcorver.jpg"
                                 alt="รถตู้สำหรับเช่า"
-                                width={800}
-                                height={450}
+                                width="800"
+                                height="450"
                                 className="w-full h-auto"
-                                priority
-                                sizes="(max-width: 1023px) 100vw, 50vw"
                             />
                         </div>
                     </div>
@@ -290,12 +287,12 @@ function App() {
                                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
                                 onClick={() => openSlider(service.category)}
                             >
-                                <Image
+                                <img
                                     src={service.image}
                                     alt={service.title}
                                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                                    width={500}
-                                    height={192}
+                                    width="500"
+                                    height="192"
                                 />
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
@@ -401,13 +398,12 @@ function App() {
                     <div className="flex flex-row flex-wrap justify-center gap-8 image-row">
                         {testimonials.map((testimonial, index) => (
                             <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden p-0 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group" style={{animationDelay: `${index * 0.2}s`, width: '500px', height: '400px', maxWidth: '100%'}}>
-                                <Image
+                                <img
                                     src={testimonial.image}
                                     alt={`รีวิวลูกค้า ${index + 1}`}
-                                    width={500}
-                                    height={400}
+                                    width="500"
+                                    height="400"
                                     className="w-full h-full object-contain"
-                                    sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                                 />
                             </div>
                         ))}
