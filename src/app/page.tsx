@@ -6,39 +6,16 @@ import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucid
 import { services, destinations } from './data'; // Import data from data.ts
 
 // Dynamically import components for better performance and to avoid SSR issues
-const CarSlider = dynamic(() => import('../components/CarSlider'), {
-    ssr: false,
-    loading: () => <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"><p className="text-white">Loading Slider...</p></div>
-});
-
-const FacebookPageIframe = dynamic(() => import('../components/FacebookPageIframe'), {
-    ssr: false,
-    loading: () => <div className="w-full h-[750px] bg-gray-200 animate-pulse flex items-center justify-center"><p className="text-gray-500">Loading Facebook...</p></div>
-});
-
-const TikTokEmbed = dynamic(() => import('../components/TikTokEmbed'), {
-    ssr: false,
-    loading: () => <div className="w-full h-[780px] bg-gray-200 animate-pulse flex items-center justify-center"><p className="text-gray-500">Loading TikTok...</p></div>
-});
+const CarSlider = dynamic(() => import('../components/CarSlider'), { ssr: false });
+const FacebookPageIframe = dynamic(() => import('../components/FacebookPageIframe'), { ssr: false });
+const TikTokEmbed = dynamic(() => import('../components/TikTokEmbed'), { ssr: false });
 
 const testimonials = [
-        {
-            image: '/thkone.jpg',
-
-        },
-        {
-            image: '/thktwo.jpg',
-
-        },
-        {
-            image: '/thkthree.jpg',
-
-        },
-    {
-        image: '/thkfour.jpg',
-
-    }
-    ];
+    { image: '/thkone.jpg' },
+    { image: '/thktwo.jpg' },
+    { image: '/thkthree.jpg' },
+    { image: '/thkfour.jpg' },
+];
 
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -293,6 +270,7 @@ function App() {
                                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                                     width="500"
                                     height="192"
+                                    loading="lazy"
                                 />
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
@@ -404,6 +382,7 @@ function App() {
                                     width="500"
                                     height="400"
                                     className="w-full h-full object-contain"
+                                    loading="lazy"
                                 />
                             </div>
                         ))}
