@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'; // Import the Next.js Image component
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface CarSlide {
@@ -121,11 +122,13 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
                     >
                         {filteredSlides.map((slide) => (
                             <div key={slide.id} className="min-w-full h-full relative flex items-center justify-center">
-                                <img
+                                <Image
                                     src={slide.image}
                                     alt={`รูปภาพรถตู้ ${category} #${slide.id}`}
-                                    className="w-full h-full object-contain transition-transform duration-700"
-                                    loading="lazy"
+                                    fill
+                                    style={{ objectFit: 'contain' }}
+                                    sizes="(max-width: 768px) 100vw, 896px"
+                                    className="transition-transform duration-700"
                                 />
                             </div>
                         ))}

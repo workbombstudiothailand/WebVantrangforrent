@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image'; // Import the Next.js Image component
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car, ChevronDown } from 'lucide-react';
 import { services, destinations, faqs } from './data'; // Import data from data.ts
 import SEOContent from '../components/SEOContent'; // Import the SEOContent component
@@ -18,7 +19,16 @@ const testimonials = [
     { image: '/thkfour.jpg' },
 ];
 
-const FAQItem = ({ faq, index, isOpen, onToggle }) => {
+// Define types for the FAQItem props to fix the TypeScript error
+interface FAQItemProps {
+  faq: { question: string; answer: string };
+  index: number;
+  isOpen: boolean;
+  onToggle: (index: number) => void;
+}
+
+// FAQItem Component for Accordion
+const FAQItem: React.FC<FAQItemProps> = ({ faq, index, isOpen, onToggle }) => {
   return (
     <div className="border-b">
       <button
@@ -216,16 +226,16 @@ function App() {
                             </div>
 
                             <div className="mt-8 flex justify-center items-center gap-x-4">
-                                <img
+                                <Image
                                     src="/sha.jpg"
                                     alt="sha"
-                                    width="150"
-                                    height="150"/>
-                                <img
+                                    width={150}
+                                    height={150}/>
+                                <Image
                                     src="/tat.png"
                                     alt="tat"
-                                    width="150"
-                                    height="150"/>
+                                    width={150}
+                                    height={150}/>
                             </div>
 
                             <div className="grid grid-cols-3 gap-8 mt-8">
@@ -254,12 +264,13 @@ function App() {
                         </div>
 
                         <div className="w-full rounded-lg shadow-lg overflow-hidden">
-                            <img
+                            <Image
                                 src="/prwebcorver.jpg"
                                 alt="รถตู้สำหรับเช่า"
-                                width="800"
-                                height="450"
+                                width={800}
+                                height={450}
                                 className="w-full h-auto"
+                                priority
                             />
                         </div>
                     </div>
@@ -297,13 +308,12 @@ function App() {
                                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
                                 onClick={() => openSlider(service.category)}
                             >
-                                <img
+                                <Image
                                     src={service.image}
                                     alt={service.title}
                                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                                    width="500"
-                                    height="192"
-                                    loading="lazy"
+                                    width={500}
+                                    height={192}
                                 />
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
@@ -413,13 +423,12 @@ function App() {
                                 className="group bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
                                 onClick={() => setSelectedImage(testimonial.image)}
                             >
-                                <img
+                                <Image
                                     src={testimonial.image}
                                     alt={`รีวิวจากลูกค้าคนที่ ${index + 1}`}
-                                    width="600"
-                                    height="600"
+                                    width={600}
+                                    height={600}
                                     className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                                    loading="lazy"
                                 />
                             </div>
                         ))}

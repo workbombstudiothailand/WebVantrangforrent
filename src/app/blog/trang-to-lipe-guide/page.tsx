@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; // Import the Next.js Image component
 import { Car, Ship, MapPin, Phone } from 'lucide-react';
 
 export default function TrangToLipeGuidePage() {
@@ -25,7 +26,14 @@ export default function TrangToLipeGuidePage() {
           </p>
 
           <figure>
-            <img src="/prwebcorver.jpg" alt="รถตู้เช่าตรัง Vantrangforrent พร้อมให้บริการ" className="rounded-lg shadow-lg" />
+            <Image 
+              src="/prwebcorver.jpg" 
+              alt="รถตู้เช่าตรัง Vantrangforrent พร้อมให้บริการ" 
+              width={800} 
+              height={450}
+              className="rounded-lg shadow-lg w-full h-auto"
+              priority
+            />
             <figcaption className="text-center text-sm mt-2">บริการรถตู้เช่าตรังของเรา พร้อมพาคุณไปยังทุกจุดหมาย</figcaption>
           </figure>
 
