@@ -2,22 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image'; // Import the Next.js Image component
+import Image from 'next/image';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car, ChevronDown } from 'lucide-react';
-import { services, destinations, faqs } from './data'; // Import data from data.ts
+import { services, destinations, faqs, testimonials } from './data'; // Import all data from data.ts
 import SEOContent from '../components/SEOContent'; // Import the SEOContent component
 
 // Dynamically import components for better performance and to avoid SSR issues
 const CarSlider = dynamic(() => import('../components/CarSlider'), { ssr: false });
 const FacebookPageIframe = dynamic(() => import('../components/FacebookPageIframe'), { ssr: false });
 const TikTokEmbed = dynamic(() => import('../components/TikTokEmbed'), { ssr: false });
-
-const testimonials = [
-    { image: '/thkone.jpg' },
-    { image: '/thktwo.jpg' },
-    { image: '/thkthree.jpg' },
-    { image: '/thkfour.jpg' },
-];
 
 // Define types for the FAQItem props to fix the TypeScript error
 interface FAQItemProps {
@@ -47,7 +40,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ faq, index, isOpen, onToggle }) => {
   );
 };
 
-function App() {
+export default function HomePage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [isSliderOpen, setIsSliderOpen] = useState(false);
@@ -419,16 +412,15 @@ function App() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
                         {testimonials.map((testimonial, index) => (
                             <div 
-                                key={index} 
-                                className="group bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                                key={index}
+                                className="group relative bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-square"
                                 onClick={() => setSelectedImage(testimonial.image)}
                             >
                                 <Image
                                     src={testimonial.image}
                                     alt={`รีวิวจากลูกค้าคนที่ ${index + 1}`}
-                                    width={600}
-                                    height={600}
-                                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                                    fill
+                                    className="object-contain transition-transform duration-300 group-hover:scale-105"
                                 />
                             </div>
                         ))}
@@ -685,5 +677,3 @@ function App() {
         </div>
     );
 }
-
-export default App;
