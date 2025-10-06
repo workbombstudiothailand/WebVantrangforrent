@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucide-react';
-import { services, destinations } from './data'; // Import data from data.ts
+import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car, ChevronDown } from 'lucide-react';
+import { services, destinations, faqs } from './data'; // Import data from data.ts
+import SEOContent from '../components/SEOContent'; // Import the SEOContent component
 
 // Dynamically import components for better performance and to avoid SSR issues
 const CarSlider = dynamic(() => import('../components/CarSlider'), { ssr: false });
@@ -17,6 +18,25 @@ const testimonials = [
     { image: '/thkfour.jpg' },
 ];
 
+const FAQItem = ({ faq, index, isOpen, onToggle }) => {
+  return (
+    <div className="border-b">
+      <button
+        className="w-full flex justify-between items-center text-left py-4 px-2 focus:outline-none"
+        onClick={() => onToggle(index)}
+      >
+        <span className="text-lg font-semibold text-gray-800">{faq.question}</span>
+        <ChevronDown className={`w-6 h-6 text-sky-600 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      {isOpen && (
+        <div className="pb-4 px-2 text-gray-600">
+          <p>{faq.answer}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
@@ -24,6 +44,11 @@ function App() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [isMounted, setIsMounted] = useState(false);
+    const [openFaq, setOpenFaq] = useState<number | null>(0); // Keep the first FAQ open by default
+
+    const handleFaqToggle = (index: number) => {
+        setOpenFaq(openFaq === index ? null : index);
+    };
 
     useEffect(() => {
         // This will run only on the client, after the component mounts
@@ -50,8 +75,8 @@ function App() {
     };
 
     useEffect(() => {
+        const sections = ['home', 'services', 'testimonials', 'faq', 'contact'];
         const handleScroll = () => {
-            const sections = ['home', 'services', 'testimonials', 'contact'];
             const scrollPosition = window.scrollY + 100;
 
             for (const section of sections) {
@@ -87,6 +112,7 @@ function App() {
                                 { id: 'home', label: 'หน้าแรก' },
                                 { id: 'services', label: 'บริการของเรา' },
                                 { id: 'testimonials', label: 'รีวิวลูกค้า' },
+                                { id: 'faq', label: 'คำถามที่พบบ่อย' },
                                 { id: 'contact', label: 'ติดต่อเรา' }
                             ].map((item) => (
                                 <button
@@ -134,6 +160,7 @@ function App() {
                                 { id: 'home', label: 'หน้าแรก' },
                                 { id: 'services', label: 'บริการของเรา' },
                                 { id: 'testimonials', label: 'รีวิวลูกค้า' },
+                                { id: 'faq', label: 'คำถามที่พบบ่อย' },
                                 { id: 'contact', label: 'ติดต่อเรา' }
                             ].map((item) => (
                                 <button
@@ -258,9 +285,8 @@ function App() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">บริการของเรา</h2>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            <strong>ครบครันทุกความต้องการในการเดินทาง ด้วยรถตู้คุณภาพและคนขับมืออาชีพ</strong>
-                            <strong> รถตู้ของเราทุกคันได้รับการรับรองตามมาตรการความปลอดภัยด้านสาธารณสุข Amazing Thailand Safety and Health Administration (SHA)</strong>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                            <strong>เรามีบริการรถตู้เช่าตรังที่ครบครันทุกความต้องการในการเดินทาง ไม่ว่าจะเป็นรถตู้นำเที่ยวตรัง, รถตู้เช่าเหมา, หรือรถตู้รับส่งสนามบิน ด้วยรถตู้คุณภาพและคนขับมืออาชีพ รถตู้ของเราทุกคันได้รับการรับรองตามมาตรการความปลอดภัยด้านสาธารณสุข (SHA)</strong>
                         </p>
                     </div>
 
@@ -401,8 +427,32 @@ function App() {
 
                 </div>
             </section>
+
+            {/* FAQ Section */}
+            <section id="faq" className="py-20 bg-white">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">คำถามที่พบบ่อย</h2>
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                            คำตอบสำหรับทุกข้อสงสัยเกี่ยวกับการเช่ารถตู้ตรังกับเรา
+                        </p>
+                    </div>
+                    <div className="max-w-3xl mx-auto">
+                        {faqs.map((faq, index) => (
+                            <FAQItem 
+                                key={index} 
+                                faq={faq} 
+                                index={index} 
+                                isOpen={openFaq === index} 
+                                onToggle={handleFaqToggle} 
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Contact Section */}
-            <section id="contact" className="py-20 bg-white">
+            <section id="contact" className="py-20 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">จองรถตู้เช่า ติดต่อเรา</h2>
@@ -475,7 +525,7 @@ function App() {
                             </div>
 
                             {/* Facebook Page Iframe under contact info */}
-                            <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 w-full h-[500px]">
+                            <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[750px] h-[750px] flex items-center justify-center mx-auto">
                                 {isMounted ? <FacebookPageIframe /> : <div className="w-full h-full bg-gray-200 animate-pulse"/>}
                             </div>
                         </div>
@@ -525,7 +575,7 @@ function App() {
                                 <span className="text-xl font-bold">รถตู้เช่าตรัง</span>
                             </div>
                             <p className="text-gray-400 leading-relaxed">
-                                ให้เช่ารถตู้พร้อมคนขับ Vip 8,9 ที่นั่ง จังหวัดตรัง และ จังหวัดใกล้เคียง โดย คุณเมย์ 099-1932345
+                                บริการ <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} className="underline hover:text-sky-300">รถตู้เช่าตรังพร้อมคนขับมืออาชีพ</a> ให้บริการเช่ารถตู้ VIP, <a href="#services" onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="underline hover:text-sky-300">รถตู้นำเที่ยวตรัง</a>และจังหวัดใกล้เคียง ไม่ว่าจะเป็นการเหมารถตู้เพื่อท่องเที่ยว, งานรับปริญญา, หรือ <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} className="underline hover:text-sky-300">รถรับส่งสนามบินตรัง</a>, สนามบินหาดใหญ่, และสนามบินกระบี่ เราพร้อมให้บริการคุณในทุกเส้นทาง
                             </p>
                         </div>
 
@@ -565,6 +615,9 @@ function App() {
                     </div>
                 </div>
             </footer>
+
+            <SEOContent />
+
             {/* Floating Contact Buttons */}
             <div className="fixed bottom-6 right-6 space-y-3 z-40">
                 <a href="https://line.me/ti/p/mNPO2-os_3"

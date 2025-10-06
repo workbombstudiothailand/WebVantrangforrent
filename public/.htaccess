@@ -4,21 +4,6 @@
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# BEGIN Caching
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType image/jpg "access 1 year"
-  ExpiresByType image/jpeg "access 1 year"
-  ExpiresByType image/gif "access 1 year"
-  ExpiresByType image/png "access 1 year"
-  ExpiresByType image/svg+xml "access 1 year"
-  ExpiresByType text/css "access 1 month"
-  ExpiresByType application/javascript "access 1 month"
-  ExpiresByType application/x-javascript "access 1 month"
-  ExpiresDefault "access 2 days"
-</IfModule>
-# END Caching
-
 # BEGIN Compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE application/javascript
@@ -45,8 +30,13 @@
 </IfModule>
 # END Compression
 
-# BEGIN Security Headers
+# BEGIN Caching & Security Headers
 <IfModule mod_headers.c>
+  # Set cache control for static assets - 1 year
+  <FilesMatch "\.(ico|jpg|jpeg|png|gif|svg|js|css|webmanifest|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
   # Enforce HTTPS
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
@@ -62,4 +52,4 @@
   # Permissions Policy (disable features not needed)
   Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
 </IfModule>
-# END Security Headers
+# END Caching & Security Headers
