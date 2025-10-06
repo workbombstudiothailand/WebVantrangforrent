@@ -6,14 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prod": "pm2 start npm --name \"vantrangforrent\" -- start",
+    "prod:stop": "pm2 stop vantrangforrent",
+    "prod:restart": "pm2 restart vantrangforrent"
   },
   "dependencies": {
     "@eslint/js": "9.33.0",
+    "cross-env": "^10.1.0",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-react-refresh": "0.4.20",
     "globals": "16.3.0",
     "next": "15.5.0",
+    "pm2": "^6.0.13",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "typescript-eslint": "8.39.1"
@@ -24,12 +29,12 @@
     "@types/node": "24.3.0",
     "@types/react": "19.1.10",
     "@types/react-dom": "19.1.7",
+    "autoprefixer": "10.4.19",
     "eslint": "9.0.0",
     "eslint-config-next": "15.4.6",
     "lucide-react": "0.539.0",
-    "tailwindcss": "3.4.4",
     "postcss": "8.4.38",
-    "autoprefixer": "10.4.19",
+    "tailwindcss": "3.4.4",
     "typescript": "5.9.2"
   }
 }

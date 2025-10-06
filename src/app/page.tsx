@@ -143,7 +143,7 @@ function App() {
                         <div className="hidden md:flex items-center space-x-3">
                             <a
                                 href="tel:0991932345"
-                                className="flex items-center space-x-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-105"
+                                className="flex items-center justify-center space-x-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-105"
                             >
                                 <Phone className="h-4 w-4" />
                                 <span className="font-medium">โทรเลย</span>
@@ -187,7 +187,7 @@ function App() {
                                     className="flex items-center space-x-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-all duration-300 w-full justify-center transform hover:scale-105"
                                 >
                                     <Phone className="h-4 w-4" />
-                                    <span className="font-medium">โทรเลย</span>
+                                    <span>โทรเลย</span>
                                 </a>
                             </div>
                         </div>
@@ -519,6 +519,7 @@ function App() {
                                 </a>
                             </div>
 
+                            {/* Time and Location */}
                             <div className="bg-gradient-to-r from-sky-600 to-blue-600 rounded-xl p-6 text-white">
                                 <h4 className="font-bold text-lg mb-3">เวลาให้บริการ</h4>
                                 <div className="space-y-2">
@@ -535,14 +536,14 @@ function App() {
 
                             {/* Facebook Page Iframe under contact info */}
                             <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[750px] h-[750px] flex items-center justify-center mx-auto">
-                                {isMounted ? <FacebookPageIframe /> : <div className="w-full h-full bg-gray-200 animate-pulse"/>}
+                                {isMounted ? <FacebookPageIframe /> : <div className="w-full h-full bg-gray-200 animate-pulse" />}
                             </div>
                         </div>
 
                         {/* Right Column: Pay Form and TikTok Embed */}
                         <div className="flex flex-col items-center">
                             <div className="rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
-                                {isMounted ? <TikTokEmbed /> : <div className="w-full h-full bg-gray-200 animate-pulse"/>}
+                                {isMounted ? <TikTokEmbed /> : <div className="w-full h-full bg-gray-200 animate-pulse" />}
                             </div>
                             <div className="mt-8 bg-gray-50 rounded-2xl p-8 w-full">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">วิธีการจองและชำระเงิน</h3>
@@ -552,7 +553,7 @@ function App() {
                                     </p>
                                     <ul className="list-none space-y-2 pl-4">
                                         <li><strong>โทรศัพท์:</strong> <a href="tel:0991932345" className="text-sky-600 hover:underline">099-1932345</a> หรือ <a href="tel:0836418519" className="text-sky-600 hover:underline">083-6418519</a></li>
-                                        <li><strong>Line ID:</strong> momay2659</li>
+                                        <li><strong>Line ID:</strong> momoy2659</li>
                                     </ul>
                                     <p>
                                         เมื่อยืนยันการจองแล้ว ท่านจะได้รับข้อมูลเพื่อโอนเงินมัดจำจำนวน 50% ของยอดทั้งหมด
@@ -651,19 +652,19 @@ function App() {
 
             {/* Image Modal */}
             {selectedImage && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 cursor-pointer"
                     onClick={() => setSelectedImage(null)}
                 >
                     <div className="relative max-w-4xl max-h-[90vh]">
-                        <Image 
-                            src={selectedImage} 
-                            alt="รีวิวลูกค้าขนาดใหญ่" 
+                        <Image
+                            src={selectedImage}
+                            alt="รีวิวลูกค้าขนาดใหญ่"
                             className="w-auto h-auto max-w-full max-h-[90vh] object-contain"
                             width={1000}
                             height={1000}
                         />
-                        <button 
+                        <button
                             onClick={() => setSelectedImage(null)}
                             className="absolute -top-2 -right-2 bg-white text-black p-2 rounded-full shadow-lg"
                         >

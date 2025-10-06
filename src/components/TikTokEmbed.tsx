@@ -19,7 +19,7 @@ const TikTokEmbed: React.FC = () => {
     blockquote.innerHTML = `
       <section>
         <a target="_blank" title="@vantrangforreng" href="https://www.tiktok.com/@vantrangforreng?refer=embed">@vantrangforreng</a>
-        <p>วานตรังฟอร์เรนท์ - คลิปแนะนำ</p>
+        <p>แวนตรังฟอร์เรนท์ - คลิปแนะนำ</p>
         <a target="_blank" title="TikTok Video" href="https://www.tiktok.com/@vantrangforreng/video/7339536111032651015?refer=embed">ชมคลิปนี้บน TikTok</a>
       </section>
     `;
