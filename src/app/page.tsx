@@ -656,10 +656,12 @@ function App() {
                     onClick={() => setSelectedImage(null)}
                 >
                     <div className="relative max-w-4xl max-h-[90vh]">
-                        <img 
+                        <Image 
                             src={selectedImage} 
                             alt="รีวิวลูกค้าขนาดใหญ่" 
                             className="w-auto h-auto max-w-full max-h-[90vh] object-contain"
+                            width={1000}
+                            height={1000}
                         />
                         <button 
                             onClick={() => setSelectedImage(null)}
