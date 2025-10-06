@@ -257,7 +257,7 @@ function App() {
                                     <div className="flex items-center justify-center w-12 h-12 bg-sky-100 rounded-lg mx-auto mb-2">
                                         <MapPin className="h-6 w-6 text-sky-600" />
                                     </div>
-                                    <p className="font-semibold text-gray-900">ครอบคลุม</p>
+                                    <p className="font-semibold text-gray-900">ครอบคลูม</p>
                                     <p className="text-sm text-gray-600">ทั่วภาคใต้</p>
                                 </div>
                             </div>
@@ -552,7 +552,7 @@ function App() {
                                     </p>
                                     <ul className="list-none space-y-2 pl-4">
                                         <li><strong>โทรศัพท์:</strong> <a href="tel:0991932345" className="text-sky-600 hover:underline">099-1932345</a> หรือ <a href="tel:0836418519" className="text-sky-600 hover:underline">083-6418519</a></li>
-                                        <li><strong>Line ID:</strong> momoy2659</li>
+                                        <li><strong>Line ID:</strong> momay2659</li>
                                     </ul>
                                     <p>
                                         เมื่อยืนยันการจองแล้ว ท่านจะได้รับข้อมูลเพื่อโอนเงินมัดจำจำนวน 50% ของยอดทั้งหมด
@@ -605,7 +605,7 @@ function App() {
                                 <li className="flex items-center space-x-2">
                                     <Phone className="h-4 w-4" />
                                     <a href="tel:0991932345" className="hover:text-amber-400 transition-colors">099-1932345</a>
-                                    <a href="tel:0836418519" className="hover:text-amber-400 transition-colors">083-641-8519</a>
+                                    <a href="tel:0836418519" className="hover:text-amber-400 transition-colors">083-6418519</a>
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <MessageCircle className="h-4 w-4" />
