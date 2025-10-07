@@ -106,6 +106,7 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
                 <button
                     onClick={onClose}
                     className="absolute top-3 right-3 z-20 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                    aria-label="ปิดสไลด์โชว์"
                 >
                     <X className="w-6 h-6" />
                 </button>
@@ -138,6 +139,7 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
                     <button
                         onClick={prevSlide}
                         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 z-10"
+                        aria-label="รูปภาพก่อนหน้า"
                     >
                         <ChevronLeft className="w-6 h-6" />
                     </button>
@@ -145,6 +147,7 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
                     <button
                         onClick={nextSlide}
                         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 z-10"
+                        aria-label="รูปภาพถัดไป"
                     >
                         <ChevronRight className="w-6 h-6" />
                     </button>
@@ -163,6 +166,7 @@ const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
                                                 ? 'bg-white scale-125'
                                                 : 'bg-white/50 hover:bg-white/75'
                                         }`}
+                                        aria-label={`ไปที่รูปภาพที่ ${index + 1}`}
                                     />
                                 ))}
                             </div>

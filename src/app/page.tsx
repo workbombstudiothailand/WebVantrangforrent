@@ -256,16 +256,14 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        <div className="w-full rounded-lg shadow-lg overflow-hidden">
-                            <Image
-                                src="/prwebcorver.jpg"
-                                alt="รถตู้สำหรับเช่า"
-                                width={800}
-                                height={450}
-                                className="w-full h-auto"
-                                priority
-                            />
-                        </div>
+                        <Image
+                            src="/prwebcorver.jpg"
+                            alt="รถตู้สำหรับเช่า"
+                            width={800}
+                            height={450}
+                            className="w-full h-auto rounded-lg shadow-lg overflow-hidden"
+                            priority
+                        />
                     </div>
 
                     <div className="mt-16 text-center">
