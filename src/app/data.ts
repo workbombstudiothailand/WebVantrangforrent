@@ -128,6 +128,9 @@ export const jsonLd = {
         "@type": "SearchAction",
         "target": "https://www.vantrangforrent.com/?s={search_term_string}",
         "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@id": "https://www.vantrangforrent.com/#organization"
       }
     },
     {
@@ -163,7 +166,10 @@ export const jsonLd = {
           "name": "ติดต่อเรา",
           "item": "https://www.vantrangforrent.com/#contact"
         }
-      ]
+      ],
+      "provider": {
+        "@id": "https://www.vantrangforrent.com/#organization"
+      }
     },
     {
       "@type": "RentACarStore",
