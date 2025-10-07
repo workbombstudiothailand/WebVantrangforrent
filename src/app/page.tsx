@@ -219,12 +219,16 @@ export default function HomePage() {
                                     src="/sha.jpg"
                                     alt="sha"
                                     width={150}
-                                    height={150}/>
+                                    height={150}
+                                    priority={true}
+                                />
                                 <Image
                                     src="/tat.png"
                                     alt="tat"
                                     width={150}
-                                    height={150}/>
+                                    height={150}
+                                    priority={true}
+                                />
                             </div>
 
                             <div className="grid grid-cols-3 gap-8 mt-8">
