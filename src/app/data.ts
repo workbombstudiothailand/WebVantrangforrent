@@ -132,12 +132,38 @@ export const jsonLd = {
     },
     {
       "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "หน้าแรก",
-        "item": "https://www.vantrangforrent.com/"
-      }]
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "หน้าแรก",
+          "item": "https://www.vantrangforrent.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "บริการของเรา",
+          "item": "https://www.vantrangforrent.com/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "รีวิวลูกค้า",
+          "item": "https://www.vantrangforrent.com/#testimonials"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "คำถามที่พบบ่อย",
+          "item": "https://www.vantrangforrent.com/#faq"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "ติดต่อเรา",
+          "item": "https://www.vantrangforrent.com/#contact"
+        }
+      ]
     },
     {
       "@type": "RentACarStore",
