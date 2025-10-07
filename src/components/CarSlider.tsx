@@ -2,46 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'; // Import the Next.js Image component
+import { carSlides } from '@/app/data'; // Import slide data
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-
-interface CarSlide {
-    id: number;
-    image: string;
-    category: string;
-}
 
 interface CarSliderProps {
     isOpen: boolean;
     onClose: () => void;
     category: string;
 }
-
-const carSlides: CarSlide[] = [
-    // Hiace
-    { id: 1, image: "/Hiace.jpg", category: "Hiace" },
-    { id: 2, image: "/Hiace2.jpg", category: "Hiace" },
-    { id: 3, image: "/Hiace3.jpg", category: "Hiace" },
-    { id: 4, image: "/Hiace4.jpg", category: "Hiace" },
-    { id: 5, image: "/Hiace5.jpg", category: "Hiace" },
-    { id: 6, image: "/Hiace6.jpg", category: "Hiace" },
-    { id: 7, image: "/Hiace7.jpg", category: "Hiace" },
-    { id: 8, image: "/Hiace8.jpg", category: "Hiace" },
-
-    // Commuter
-    { id: 9, image: "/commuterold.jpg", category: "Commuter" },
-    { id: 10, image: "/commuterold 2.jpg", category: "Commuter" },
-    { id: 11, image: "/commuterold 3.jpg", category: "Commuter" },
-    { id: 12, image: "/commuterold 4.jpg", category: "Commuter" },
-    { id: 13, image: "/commuterold 5.jpg", category: "Commuter" },
-    { id: 14, image: "/commuterold 6.jpg", category: "Commuter" },
-    { id: 15, image: "/commuterold 7.jpg", category: "Commuter" },
-    { id: 16, image: "/commuterold 8.jpg", category: "Commuter" },
-
-    // รถตู้ VIP
-    { id: 17, image: "/alphardleft.jpg", category: "vip" },
-    { id: 18, image: "/alphardright.jpg", category: "vip" },
-
-];
 
 const CarSlider: React.FC<CarSliderProps> = ({ isOpen, onClose, category }) => {
     const [currentSlide, setCurrentSlide] = useState(0);

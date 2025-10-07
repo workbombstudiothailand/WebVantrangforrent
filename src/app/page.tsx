@@ -144,6 +144,7 @@ export default function HomePage() {
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 className="p-2 rounded-md text-gray-600 hover:text-sky-600"
+                                aria-label="เปิด/ปิดเมนู"
                             >
                                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                             </button>
@@ -584,9 +585,7 @@ export default function HomePage() {
                                 <Car className="h-8 w-8 text-sky-400" />
                                 <span className="text-xl font-bold">รถตู้เช่าตรัง</span>
                             </div>
-                            <p className="text-gray-400 leading-relaxed">
-                                บริการ <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} className="underline hover:text-sky-300">รถตู้เช่าตรังพร้อมคนขับมืออาชีพ</a> ให้บริการเช่ารถตู้ VIP, <a href="#services" onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="underline hover:text-sky-300">รถตู้นำเที่ยวตรัง</a>และจังหวัดใกล้เคียง ไม่ว่าจะเป็นการเหมารถตู้เพื่อท่องเที่ยว, งานรับปริญญา, หรือ <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} className="underline hover:text-sky-300">รถรับส่งสนามบินตรัง</a>, สนามบินหาดใหญ่, และสนามบินกระบี่ เราพร้อมให้บริการคุณในทุกเส้นทาง
-                            </p>
+                            <p className="text-gray-400 leading-relaxed">บริการ <a href="#home" className="underline hover:text-sky-300">รถตู้เช่าตรังพร้อมคนขับมืออาชีพ</a> ให้บริการเช่ารถตู้ VIP, <a href="#services" className="underline hover:text-sky-300">รถตู้นำเที่ยวตรัง</a>และจังหวัดใกล้เคียง ไม่ว่าจะเป็นการเหมารถตู้เพื่อท่องเที่ยว, งานรับปริญญา, หรือ <a href="#contact" className="underline hover:text-sky-300">รถรับส่งสนามบินตรัง</a>, สนามบินหาดใหญ่, และสนามบินกระบี่ เราพร้อมให้บริการคุณในทุกเส้นทาง</p>
                         </div>
 
                         <div>
