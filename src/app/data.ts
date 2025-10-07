@@ -3,21 +3,21 @@ import type { Metadata } from "next";
 export const services = [
     {
         title: 'Toyota Hiace',
-        category: 'Hiace',
+        category: 'hiace',
         price: '2,500 บาท/วัน',
         image: '/Hiace.jpg',
         features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
     },
     {
         title: 'Toyota Commuter All new',
-        category: 'Commuter',
+        category: 'commuter',
         price: '1,800 - 2,000 บาท/วัน',
         image: '/commuterold.jpg',
         features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
     },
     {
         title: 'รถตู้หรู VIP Alphard',
-        category: 'vip',
+        category: 'vip', // Already lowercase, which is good
         price: '7,500 - 8,500 บาท/วัน',
         image: '/alphardleft.jpg',
         features: ['บริการดี', 'คนขับมืออาชีพ', 'รถสวย สะอาด นั่งสบาย มีระดับ', 'ใส่ใจลูกค้าตลอดการเดินทาง']
@@ -25,32 +25,32 @@ export const services = [
 ];
 
 export const testimonials = [
-    { image: '/thkone.jpg' },
-    { image: '/thktwo.jpg' },
-    { image: '/thkthree.jpg' },
-    { image: '/thkfour.jpg' }
+    { image: '/thkone.jpg', description: "รีวิวจากลูกค้าเรื่องการบริการที่ดีและคนขับสุภาพ" },
+    { image: '/thktwo.jpg', description: "รีวิวจากลูกค้าเรื่องความตรงต่อเวลาในการรับส่งสนามบิน" },
+    { image: '/thkthree.jpg', description: "รีวิวจากลูกค้าเรื่องความสะอาดของรถและความสบายในการเดินทาง" },
+    { image: '/thkfour.jpg', description: "รีวิวจากลูกค้าเรื่องความชำนาญเส้นทางของคนขับ" }
 ];
 
 export const carSlides = [
     // Hiace
-    { id: 1, image: "/Hiace.jpg", category: "Hiace" },
-    { id: 2, image: "/Hiace2.jpg", category: "Hiace" },
-    { id: 3, image: "/Hiace3.jpg", category: "Hiace" },
-    { id: 4, image: "/Hiace4.jpg", category: "Hiace" },
-    { id: 5, image: "/Hiace5.jpg", category: "Hiace" },
-    { id: 6, image: "/Hiace6.jpg", category: "Hiace" },
-    { id: 7, image: "/Hiace7.jpg", category: "Hiace" },
-    { id: 8, image: "/Hiace8.jpg", category: "Hiace" },
+    { id: 1, image: "/Hiace.jpg", category: "hiace" },
+    { id: 2, image: "/Hiace2.jpg", category: "hiace" },
+    { id: 3, image: "/Hiace3.jpg", category: "hiace" },
+    { id: 4, image: "/Hiace4.jpg", category: "hiace" },
+    { id: 5, image: "/Hiace5.jpg", category: "hiace" },
+    { id: 6, image: "/Hiace6.jpg", category: "hiace" },
+    { id: 7, image: "/Hiace7.jpg", category: "hiace" },
+    { id: 8, image: "/Hiace8.jpg", category: "hiace" },
 
     // Commuter
-    { id: 9, image: "/commuterold.jpg", category: "Commuter" },
-    { id: 10, image: "/commuterold 2.jpg", category: "Commuter" },
-    { id: 11, image: "/commuterold 3.jpg", category: "Commuter" },
-    { id: 12, image: "/commuterold 4.jpg", category: "Commuter" },
-    { id: 13, image: "/commuterold 5.jpg", category: "Commuter" },
-    { id: 14, image: "/commuterold 6.jpg", category: "Commuter" },
-    { id: 15, image: "/commuterold 7.jpg", category: "Commuter" },
-    { id: 16, image: "/commuterold 8.jpg", category: "Commuter" },
+    { id: 9, image: "/commuterold.jpg", category: "commuter" },
+    { id: 10, image: "/commuterold-2.jpg", category: "commuter" },
+    { id: 11, image: "/commuterold-3.jpg", category: "commuter" },
+    { id: 12, image: "/commuterold-4.jpg", category: "commuter" },
+    { id: 13, image: "/commuterold-5.jpg", category: "commuter" },
+    { id: 14, image: "/commuterold-6.jpg", category: "commuter" },
+    { id: 15, image: "/commuterold-7.jpg", category: "commuter" },
+    { id: 16, image: "/commuterold-8.jpg", category: "commuter" },
 
     // รถตู้ VIP
     { id: 17, image: "/alphardleft.jpg", category: "vip" },
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
       },
     ],
     locale: "th_TH",
-    siteName: "รถตู้เช่าตรัง by vantrangforrent.com",
+    siteName: "รถตู้เช่าตรัง - Vantrangforrent.com",
   },
   twitter: {
     card: "summary_large_image",
@@ -149,7 +149,7 @@ export const jsonLd = {
     {
       "@type": "WebSite",
       "url": "https://www.vantrangforrent.com/",
-      "name": "รถตู้เช่าตรัง by vantrangforrent.com",
+      "name": "รถตู้เช่าตรัง - Vantrangforrent.com",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://www.vantrangforrent.com/?s={search_term_string}",
@@ -262,6 +262,13 @@ export const jsonLd = {
               "description": "รถตู้รุ่นใหม่ นั่งสบาย สำหรับการเดินทางที่เหนือกว่า",
               "serviceType": "บริการรถตู้เช่าพร้อมคนขับ",
               "provider": {"@id": "https://www.vantrangforrent.com/#organization"}
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "2500",
+              "priceCurrency": "THB",
+              "valueAddedTaxIncluded": false,
+              "unitText": "ต่อวัน"
             }
           },
           {
@@ -272,6 +279,13 @@ export const jsonLd = {
               "description": "รถตู้ขนาดมาตรฐาน ยอดนิยมสำหรับกรุ๊ปทัวร์และครอบครัว",
               "serviceType": "บริการรถตู้เช่าพร้อมคนขับ",
               "provider": {"@id": "https://www.vantrangforrent.com/#organization"}
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "1800",
+              "priceCurrency": "THB",
+              "valueAddedTaxIncluded": false,
+              "unitText": "ต่อวัน"
             }
           },
           {
@@ -282,6 +296,13 @@ export const jsonLd = {
               "description": "ที่สุดของความหรูหราและเป็นส่วนตัว สำหรับแขกคนสำคัญ",
               "serviceType": "บริการรถตู้เช่าพร้อมคนขับ",
               "provider": {"@id": "https://www.vantrangforrent.com/#organization"}
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "7500",
+              "priceCurrency": "THB",
+              "valueAddedTaxIncluded": false,
+              "unitText": "ต่อวัน"
             }
           }
         ]
