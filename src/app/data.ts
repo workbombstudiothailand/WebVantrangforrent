@@ -168,7 +168,7 @@ export const jsonLd = {
     {
       "@type": "RentACarStore",
       "@id": "https://www.vantrangforrent.com/#organization",
-      "name": "รถตู้เช่าตรัง by vantrangforrent.com",
+      "name": "รถตู้เช่าตรัง - Vantrangforrent.com",
       "description": "ผู้ให้บริการรถตู้เช่าพร้อมคนขับมืออาชีพอันดับ 1 ในจังหวัดตรัง ให้บริการครอบคลุมการเดินทางทุกรูปแบบ ทั้งการนำเที่ยว, การรับส่งสนามบิน (ตรัง, หาดใหญ่, กระบี่), และการเดินทางทั่วภาคใต้ ด้วยรถตู้หลากหลายรุ่นตั้งแต่ Toyota Commuter, Hiace, ไปจนถึงรถ VIP หรูอย่าง Alphard เรามุ่งมั่นให้บริการที่ปลอดภัย, สะดวกสบาย, และเชื่อถือได้ตลอด 24 ชั่วโมง",
       "slogan": "เช่ารถตู้ตรัง ต้อง Vantrangforrent.com บริการดี มีรถตู้ VIP คนขับมืออาชีพ",
       "url": "https://www.vantrangforrent.com/",
