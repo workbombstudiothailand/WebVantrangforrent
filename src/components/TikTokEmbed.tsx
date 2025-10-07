@@ -1,42 +1,47 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 const TikTokEmbed: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    // Clear previous content (for hot reload)
-    containerRef.current.innerHTML = "";
-    // Create blockquote for a specific TikTok video
-    const blockquote = document.createElement("blockquote");
-    blockquote.className = "tiktok-embed";
-    blockquote.setAttribute("cite", "https://www.tiktok.com/@vantrangforreng/video/7339536111032651015");
-    blockquote.setAttribute("data-video-id", "7339536111032651015");
-    blockquote.setAttribute("data-embed-from", "oembed");
-    blockquote.style.maxWidth = "605px";
-    blockquote.style.minWidth = "325px";
-    blockquote.innerHTML = `
-      <section>
-        <a target="_blank" title="@vantrangforreng" href="https://www.tiktok.com/@vantrangforreng?refer=embed">@vantrangforreng</a>
-        <p>แวนตรังฟอร์เรนท์ - คลิปแนะนำ</p>
-        <a target="_blank" title="TikTok Video" href="https://www.tiktok.com/@vantrangforreng/video/7339536111032651015?refer=embed">ชมคลิปนี้บน TikTok</a>
-      </section>
-    `;
-    containerRef.current.appendChild(blockquote);
-    // Inject TikTok script
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://www.tiktok.com/embed.js";
-    script.onerror = () => {
-      const fallback = document.createElement("script");
-      fallback.src = "https://iframely.net/files/tiktok-embed.js";
-      document.body.appendChild(fallback);
-    };
-    containerRef.current.appendChild(script);
+    // This effect runs only on the client side, after the component has mounted.
+    setIsMounted(true);
   }, []);
 
-  return <div className="w-full flex justify-center" ref={containerRef} />;
+  useEffect(() => {
+    // This effect runs only after isMounted is true, ensuring it's client-side.
+    if (isMounted) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.tiktok.com/embed.js";
+      document.body.appendChild(script);
+
+      // Cleanup function to remove the script when the component unmounts
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [isMounted]);
+
+  // Render a placeholder on the server and initial client render.
+  // Render the actual embed only after the component has mounted on the client.
+  if (!isMounted) {
+    return <div className="w-full h-[780px] bg-gray-200 animate-pulse rounded-lg" />;
+  }
+
+  return (
+      <blockquote
+          className="tiktok-embed"
+          cite="https://www.tiktok.com/@vantrangforreng/video/7339536111032651015"
+          data-video-id="7339536111032651015"
+          style={{ maxWidth: '605px', minWidth: '325px' }}
+      >
+        <section>
+          <a target="_blank" rel="noopener noreferrer" title="@vantrangforreng" href="https://www.tiktok.com/@vantrangforreng?refer=embed">@vantrangforreng</a>
+        </section>
+      </blockquote>
+  );
 };
 
 export default TikTokEmbed;

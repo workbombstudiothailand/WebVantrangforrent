@@ -46,17 +46,11 @@ export default function HomePage() {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
-    const [isMounted, setIsMounted] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(0); // Keep the first FAQ open by default
 
     const handleFaqToggle = (index: number) => {
         setOpenFaq(openFaq === index ? null : index);
     };
-
-    useEffect(() => {
-        // This will run only on the client, after the component mounts
-        setIsMounted(true);
-    }, []);
 
     const openSlider = (category: string) => {
         setSelectedCategory(category);
@@ -78,24 +72,26 @@ export default function HomePage() {
     };
 
     useEffect(() => {
-        const sections = ['home', 'services', 'testimonials', 'faq', 'contact'];
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + 100;
-
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const { offsetTop, offsetHeight } = element;
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActiveSection(section);
-                        break;
+        const sectionIds = ['home', 'services', 'testimonials', 'faq', 'contact'];
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
                     }
-                }
-            }
-        };
+                });
+            },
+            { rootMargin: '-50% 0px -50% 0px' } // Trigger when section is in the middle of the viewport
+        );
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        sectionIds.forEach((id) => {
+            const element = document.getElementById(id);
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -409,18 +405,28 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {testimonials.map((testimonial, index) => (
                             <div 
                                 key={index}
-                                className="group relative bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-square"
+                                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-square"
                                 onClick={() => setSelectedImage(testimonial.image)}
                             >
+                                {/* Background Blurred Image */}
+                                <Image
+                                    src={testimonial.image}
+                                    alt=""
+                                    fill
+                                    className="object-cover scale-125 blur-lg"
+                                    aria-hidden="true"
+                                />
+                                {/* Foreground Sharp Image */}
                                 <Image
                                     src={testimonial.image}
                                     alt={`รีวิวจากลูกค้าคนที่ ${index + 1}`}
                                     fill
-                                    className="object-contain transition-transform duration-300 group-hover:scale-105"
+                                    className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105 p-2"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                                 />
                             </div>
                         ))}
@@ -528,14 +534,14 @@ export default function HomePage() {
 
                             {/* Facebook Page Iframe under contact info */}
                             <div className="mt-8 rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[750px] h-[750px] flex items-center justify-center mx-auto">
-                                {isMounted ? <FacebookPageIframe /> : <div className="w-full h-full bg-gray-200 animate-pulse" />}
+                                <FacebookPageIframe />
                             </div>
                         </div>
 
                         {/* Right Column: Pay Form and TikTok Embed */}
                         <div className="flex flex-col items-center">
                             <div className="rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
-                                {isMounted ? <TikTokEmbed /> : <div className="w-full h-full bg-gray-200 animate-pulse" />}
+                                <TikTokEmbed />
                             </div>
                             <div className="mt-8 bg-gray-50 rounded-2xl p-8 w-full">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">วิธีการจองและชำระเงิน</h3>
