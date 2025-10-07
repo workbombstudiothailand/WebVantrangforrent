@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   verification: {
     google: "JECq8sB5kzFEgQlY7Ys_YNKGL-UnHXtAMA02i-sw-sw",
   },
-  // Add Content Security Policy (CSP) for enhanced security
+  // Add Content Security Policy (CSP) and other metadata
   other: {
-    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.tiktok.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.fbcdn.net; frame-src 'self' https://www.facebook.com https://www.tiktok.com; connect-src 'self' https://www.facebook.com;",
+    // Stricter CSP for better security
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.tiktok.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.fbcdn.net; frame-src 'self' https://www.facebook.com https://www.tiktok.com; connect-src 'self' https://www.facebook.com https://*.tiktok.com;",
     'application/ld+json': JSON.stringify(jsonLd)
   },
-  // Add JSON-LD script to metadata using the 'other' property
 };
 
 export default function RootLayout({
