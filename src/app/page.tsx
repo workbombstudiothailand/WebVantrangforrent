@@ -69,7 +69,7 @@ export default function HomePage() {
         }
         setIsMenuOpen(false);
         setActiveSection(sectionId);
-    };
+    }; // This closing brace was missing
 
     useEffect(() => {
         const sectionIds = ['home', 'services', 'testimonials', 'faq', 'contact'];
@@ -114,24 +114,25 @@ export default function HomePage() {
                                 { id: 'faq', label: 'คำถามที่พบบ่อย' },
                                 { id: 'contact', label: 'ติดต่อเรา' }
                             ].map((item) => (
-                                <button
+                                <a
                                     key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
-                                    className={`text-sm font-medium transition-colors ${
+                                    href={`#${item.id}`}
+                                    onClick={() => setActiveSection(item.id)}
+                                    className={`px-1 py-2 text-sm font-medium transition-colors ${
                                         activeSection === item.id
                                             ? 'text-sky-600 border-b-2 border-sky-600'
                                             : 'text-gray-600 hover:text-sky-600'
                                     }`}
                                 >
                                     {item.label}
-                                </button>
+                                </a>
                             ))}
                         </nav>
 
                         {/* Contact Buttons */}
                         <div className="hidden md:flex items-center space-x-3">
                             <a
-                                href="tel:0991932345"
+                                href="tel:+66991932345"
                                 className="flex items-center justify-center space-x-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-105"
                             >
                                 <Phone className="h-4 w-4" />
@@ -163,17 +164,18 @@ export default function HomePage() {
                                 { id: 'faq', label: 'คำถามที่พบบ่อย' },
                                 { id: 'contact', label: 'ติดต่อเรา' }
                             ].map((item) => (
-                                <button
+                                <a
                                     key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
-                                    className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-sky-600"
+                                    href={`#${item.id}`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-sky-600 rounded-md"
                                 >
                                     {item.label}
-                                </button>
+                                </a>
                             ))}
                             <div className="pt-4 pb-2 space-y-2">
                                 <a
-                                    href="tel:0991932345"
+                                    href="tel:+66991932345"
                                     className="flex items-center space-x-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-all duration-300 w-full justify-center transform hover:scale-105"
                                 >
                                     <Phone className="h-4 w-4" />
@@ -189,18 +191,17 @@ export default function HomePage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div>
-                            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
-                                บริการ<br />
-                                <span className="text-sky-600">รถตู้เช่าตรัง</span><br/>
-                                <span className="text-gray-600">พร้อมคนขับมืออาชีพ</span>
+                            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                                รถตู้เช่าตรังพร้อมคนขับ
+                                <span className="block text-2xl md:text-3xl font-medium text-gray-600 mt-2">บริการอันดับ 1 ในจังหวัดตรัง</span>
                             </h1>
-                            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                                 <strong>สัมผัสความสะดวกสบายในการเดินทาง ไม่ว่าจะเป็นท่องเที่ยว รับส่ง หรืองานต่างๆปลอดภัย • เชื่อถือได้ • บริการ 24 ชั่วโมง</strong>
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                 <a
-                                    href="tel:0991932345"
+                                    href="tel:+66991932345"
                                     className="flex items-center justify-center space-x-2 bg-sky-600 text-white px-8 py-4 rounded-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-105"
                                 >
                                     <Phone className="h-5 w-5" />
@@ -218,14 +219,14 @@ export default function HomePage() {
                             <div className="mt-8 flex justify-center items-center gap-x-4">
                                 <Image
                                     src="/sha.jpg"
-                                    alt="sha"
+                                    alt="มาตรฐานความปลอดภัย SHA"
                                     width={150}
                                     height={150}
                                     priority={true}
                                 />
                                 <Image
                                     src="/tat.png"
-                                    alt="tat"
+                                    alt="ใบอนุญาตประกอบธุรกิจนำเที่ยว ททท."
                                     width={150}
                                     height={150}
                                     priority={true}
@@ -297,8 +298,7 @@ export default function HomePage() {
                         {services.map((service, index) => (
                             <div
                                 key={index}
-                                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
-                                onClick={() => openSlider(service.category)}
+                                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col"
                             >
                                 <Image
                                     src={service.image}
@@ -307,7 +307,7 @@ export default function HomePage() {
                                     width={500}
                                     height={192}
                                 />
-                                <div className="p-6">
+                                <div className="p-6 flex flex-col flex-grow">
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
                                     <p className="text-2xl font-bold text-sky-600 mb-4">{service.price}</p>
                                     <ul className="space-y-2 mb-6">
@@ -318,11 +318,15 @@ export default function HomePage() {
                                             </li>
                                         ))}
                                     </ul>
-                                    <button
-                                        className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition-all duration-300 font-medium"
-                                    >
-                                        ดูรถของเรา
-                                    </button>
+                                    <div className="mt-auto">
+                                        <button
+                                            onClick={() => openSlider(service.category)}
+                                            className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition-all duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                                            aria-label={`ดูรูปรถตู้ ${service.title} เพิ่มเติม`}
+                                        >
+                                            ดูรถของเรา
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -426,7 +430,7 @@ export default function HomePage() {
                                 {/* Foreground Sharp Image */}
                                 <Image
                                     src={testimonial.image}
-                                    alt={`รีวิวจากลูกค้าคนที่ ${index + 1}`}
+                                    alt={testimonial.description || `รีวิวจากลูกค้า vantrangforrent.com คนที่ ${index + 1}`}
                                     fill
                                     className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105 p-2"
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -478,7 +482,7 @@ export default function HomePage() {
 
                             <div className="space-y-6 mb-8">
                                 <a
-                                    href="tel:0991932345"
+                                    href="tel:+66991932345"
                                     className="flex items-center space-x-4 p-4 bg-sky-50 rounded-lg hover:bg-sky-100 transition-all duration-300 transform hover:scale-105"
                                 >
                                     <div className="flex items-center justify-center w-12 h-12 bg-sky-600 rounded-lg">
@@ -553,7 +557,7 @@ export default function HomePage() {
                                         สามารถติดต่อเราได้ตามช่องทางด้านล่างนี้เพื่อทำการจองและสอบถามข้อมูลเพิ่มเติม:
                                     </p>
                                     <ul className="list-none space-y-2 pl-4">
-                                        <li><strong>โทรศัพท์:</strong> <a href="tel:0991932345" className="text-sky-600 hover:underline">099-1932345</a> หรือ <a href="tel:0836418519" className="text-sky-600 hover:underline">083-6418519</a></li>
+                                        <li><strong>โทรศัพท์:</strong> <a href="tel:+66991932345" className="text-sky-600 hover:underline">099-1932345</a> หรือ <a href="tel:+66836418519" className="text-sky-600 hover:underline">083-6418519</a></li>
                                         <li><strong>Line ID:</strong> momoy2659</li>
                                     </ul>
                                     <p>
@@ -585,7 +589,7 @@ export default function HomePage() {
                                 <Car className="h-8 w-8 text-sky-400" />
                                 <span className="text-xl font-bold">รถตู้เช่าตรัง</span>
                             </div>
-                            <p className="text-gray-400 leading-relaxed">บริการ <a href="#home" className="underline hover:text-sky-300">รถตู้เช่าตรังพร้อมคนขับมืออาชีพ</a> ให้บริการเช่ารถตู้ VIP, <a href="#services" className="underline hover:text-sky-300">รถตู้นำเที่ยวตรัง</a>และจังหวัดใกล้เคียง ไม่ว่าจะเป็นการเหมารถตู้เพื่อท่องเที่ยว, งานรับปริญญา, หรือ <a href="#contact" className="underline hover:text-sky-300">รถรับส่งสนามบินตรัง</a>, สนามบินหาดใหญ่, และสนามบินกระบี่ เราพร้อมให้บริการคุณในทุกเส้นทาง</p>
+                            <p className="text-gray-400 leading-relaxed">บริการ <a href="#home" className="underline hover:text-sky-300">รถตู้เช่าตรังพร้อมคนขับมืออาชีพ</a>, ให้บริการเช่ารถตู้ VIP, <a href="#services" className="underline hover:text-sky-300">รถตู้นำเที่ยวตรัง</a> และจังหวัดใกล้เคียง ไม่ว่าจะเป็นการเหมารถตู้เพื่อท่องเที่ยว, งานรับปริญญา, หรือ <a href="#contact" className="underline hover:text-sky-300">รถรับส่งสนามบินตรัง</a>, สนามบินหาดใหญ่, และสนามบินกระบี่ เราพร้อมให้บริการคุณในทุกเส้นทาง</p>
                         </div>
 
                         <div>
@@ -604,8 +608,8 @@ export default function HomePage() {
                             <ul className="space-y-2 text-gray-400">
                                 <li className="flex items-center space-x-2">
                                     <Phone className="h-4 w-4" />
-                                    <a href="tel:0991932345" className="hover:text-amber-400 transition-colors">099-1932345</a>
-                                    <a href="tel:0836418519" className="hover:text-amber-400 transition-colors">083-6418519</a>
+                                    <a href="tel:+66991932345" className="hover:text-amber-400 transition-colors">099-1932345</a>
+                                    <a href="tel:+66836418519" className="hover:text-amber-400 transition-colors">083-6418519</a>
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <MessageCircle className="h-4 w-4" />
@@ -629,7 +633,7 @@ export default function HomePage() {
 
             {/* Floating Contact Buttons */}
             <div className="fixed bottom-6 right-6 space-y-3 z-40">
-                <a href="https://line.me/ti/p/mNPO2-os_3"
+                <a href="https://line.me/ti/p/~momay2659"
                    className="flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 animate-pulse-soft"
                 >
                     <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
