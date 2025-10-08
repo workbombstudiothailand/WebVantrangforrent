@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car } from 'lucide-react';
 import { services, destinations, faqs, testimonials } from './data'; // Import all data from data.ts
 import SEOContent from '../components/SEOContent'; // Import the SEOContent component
 import FAQItem from '../components/FAQItem'; // Import the extracted FAQItem component
@@ -41,16 +41,7 @@ export default function HomePage() {
     const closeSlider = () => {
         setIsSliderOpen(false);
         setSelectedCategory('');
-    };
-
-    const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-        setIsMenuOpen(false);
-        setActiveSection(sectionId);
-    }; // This closing brace was missing
+    };// This closing brace was missing
 
     useEffect(() => {
         const sectionIds = ['home', 'services', 'testimonials', 'faq', 'contact'];
@@ -519,7 +510,7 @@ export default function HomePage() {
                             <div className="rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white w-full max-w-[600px] h-[780px] flex items-center justify-center">
                                 <TikTokEmbed />
                             </div>
-                            <div className="mt-8 bg-gray-50 rounded-2xl p-8 w-full">
+                            <div className="mt-8 bg-gray-200 rounded-2xl p-8 w-full">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">วิธีการจองและชำระเงิน</h3>
                                 <div className="space-y-4 text-gray-700 leading-relaxed">
                                     <p>

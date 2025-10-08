@@ -31,24 +31,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="th">
-      <head>
-        <title>รถตู้ให้เช่าตรัง พร้อมคนขับ รีวิวเยี่ยม ราคาดี | VanTrangForRent</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://web-vantrangforrent.vercel.app/" />
-        <meta name="description" content="บริการรถตู้ให้เช่าพร้อมคนขับในตรังและภาคใต้ ราคาดี รีวิวเยี่ยม ปลอดภัย สะดวกสบาย" />
-        <meta property="og:title" content="รถตู้ให้เช่าตรัง พร้อมคนขับ รีวิวเยี่ยม ราคาดี" />
-        <meta property="og:description" content="บริการรถตู้ให้เช่าพร้อมคนขับในตรังและภาคใต้ ราคาดี รีวิวเยี่ยม ปลอดภัย สะดวกสบาย" />
-        <meta property="og:image" content="https://web-vantrangforrent.vercel.app/public/logo.jpg" />
-        <meta property="og:url" content="https://web-vantrangforrent.vercel.app/" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="รถตู้ให้เช่าตรัง พร้อมคนขับ รีวิวเยี่ยม ราคาดี" />
-        <meta name="twitter:description" content="บริการรถตู้ให้เช่าพร้อมคนขับในตรังและภาคใต้ ราคาดี รีวิวเยี่ยม ปลอดภัย สะดวกสบาย" />
-        <meta name="twitter:image" content="https://web-vantrangforrent.vercel.app/public/logo.jpg" />
-        {/* Structured Data */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      </head>
       <body className={prompt.className}>
         {children}
         <DynamicMessengerChat />
