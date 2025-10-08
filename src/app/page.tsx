@@ -6,39 +6,20 @@ import Image from 'next/image';
 import { Menu, X, Phone, MessageCircle, MapPin, Users, Shield, Car, ChevronDown } from 'lucide-react';
 import { services, destinations, faqs, testimonials } from './data'; // Import all data from data.ts
 import SEOContent from '../components/SEOContent'; // Import the SEOContent component
+import FAQItem from '../components/FAQItem'; // Import the extracted FAQItem component
 
 // Dynamically import components for better performance and to avoid SSR issues
 const CarSlider = dynamic(() => import('../components/CarSlider'), { ssr: false });
 const FacebookPageIframe = dynamic(() => import('../components/FacebookPageIframe'), { ssr: false });
 const TikTokEmbed = dynamic(() => import('../components/TikTokEmbed'), { ssr: false });
 
-// Define types for the FAQItem props to fix the TypeScript error
-interface FAQItemProps {
-  faq: { question: string; answer: string };
-  index: number;
-  isOpen: boolean;
-  onToggle: (index: number) => void;
-}
-
-// FAQItem Component for Accordion
-const FAQItem: React.FC<FAQItemProps> = ({ faq, index, isOpen, onToggle }) => {
-  return (
-    <div className="border-b">
-      <button
-        className="w-full flex justify-between items-center text-left py-4 px-2 focus:outline-none"
-        onClick={() => onToggle(index)}
-      >
-        <span className="text-lg font-semibold text-gray-800">{faq.question}</span>
-        <ChevronDown className={`w-6 h-6 text-sky-600 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-      {isOpen && (
-        <div className="pb-4 px-2 text-gray-600">
-          <p>{faq.answer}</p>
-        </div>
-      )}
-    </div>
-  );
-};
+const navItems = [
+    { id: 'home', label: 'หน้าแรก' },
+    { id: 'services', label: 'บริการของเรา' },
+    { id: 'testimonials', label: 'รีวิวลูกค้า' },
+    { id: 'faq', label: 'คำถามที่พบบ่อย' },
+    { id: 'contact', label: 'ติดต่อเรา' }
+];
 
 export default function HomePage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -107,13 +88,7 @@ export default function HomePage() {
 
                         {/* Desktop Navigation */}
                         <nav className="hidden md:flex space-x-8">
-                            {[
-                                { id: 'home', label: 'หน้าแรก' },
-                                { id: 'services', label: 'บริการของเรา' },
-                                { id: 'testimonials', label: 'รีวิวลูกค้า' },
-                                { id: 'faq', label: 'คำถามที่พบบ่อย' },
-                                { id: 'contact', label: 'ติดต่อเรา' }
-                            ].map((item) => (
+                            {navItems.map((item) => (
                                 <a
                                     key={item.id}
                                     href={`#${item.id}`}
@@ -157,13 +132,7 @@ export default function HomePage() {
                 {isMenuOpen && (
                     <div className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-                            {[
-                                { id: 'home', label: 'หน้าแรก' },
-                                { id: 'services', label: 'บริการของเรา' },
-                                { id: 'testimonials', label: 'รีวิวลูกค้า' },
-                                { id: 'faq', label: 'คำถามที่พบบ่อย' },
-                                { id: 'contact', label: 'ติดต่อเรา' }
-                            ].map((item) => (
+                            {navItems.map((item) => (
                                 <a
                                     key={item.id}
                                     href={`#${item.id}`}
@@ -207,13 +176,13 @@ export default function HomePage() {
                                     <Phone className="h-5 w-5" />
                                     <span>โทรจองเลย 099-193-2345</span>
                                 </a>
-                                <button
-                                    onClick={() => scrollToSection('services')}
+                                <a
+                                    href="#services"
                                     className="flex items-center justify-center space-x-2 border border-sky-600 text-sky-600 px-8 py-4 rounded-lg hover:bg-sky-50 transition-all duration-300 font-medium transform hover:scale-105"
                                 >
                                     <Car className="h-5 w-5" />
                                     <span>ดูบริการของเรา</span>
-                                </button>
+                                </a>
                             </div>
 
                             <div className="mt-8 flex justify-center items-center gap-x-4">
