@@ -36,6 +36,8 @@ const TikTokEmbed: React.FC = () => {
           cite="https://www.tiktok.com/@vantrangforreng/video/7339536111032651015"
           data-video-id="7339536111032651015"
           style={{ maxWidth: '605px', minWidth: '325px' }}
+          aria-label="TikTok Video Embed"
+          role="region"
       >
         <section>
           <a target="_blank" rel="noopener noreferrer" title="@vantrangforreng" href="https://www.tiktok.com/@vantrangforreng?refer=embed">@vantrangforreng</a>

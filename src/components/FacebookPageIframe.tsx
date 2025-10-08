@@ -38,7 +38,7 @@ const FacebookPageIframe: React.FC = () => {
     return (
         <div ref={iframeRef} className="w-full h-full flex items-center justify-center relative bg-gray-200 rounded-lg">
             {isIntersecting && (
-                <iframe src={iframeSrc} width="500" height="750" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Facebook Page Plugin" loading="lazy" onLoad={() => setIsLoaded(true)} className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}></iframe>
+                <iframe src={iframeSrc} width="500" height="750" style={{ border: 'none', overflow: 'hidden' }} scrolling="no" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Facebook Page Plugin" loading="lazy" onLoad={() => setIsLoaded(true)} className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} aria-label="Facebook Page Plugin" role="region"></iframe>
             )}
         </div>
     );
