@@ -172,7 +172,7 @@ export default function HomePage() {
                                     className="flex items-center justify-center space-x-2 border border-sky-600 text-sky-600 px-8 py-4 rounded-lg hover:bg-sky-50 transition-all duration-300 font-medium transform hover:scale-105"
                                 >
                                     <Car className="h-5 w-5" />
-                                    <span>ดูบริการของเรา</span>
+                                    <span>ดูประเภทรถและราคา</span>
                                 </a>
                             </div>
 
@@ -220,7 +220,7 @@ export default function HomePage() {
 
                         <Image
                             src="/prwebcorver.jpg"
-                            alt="รถตู้สำหรับเช่า"
+                            alt="รถตู้ Toyota Commuter สีขาวจอดอยู่หน้าหาดปากเมง ให้บริการโดย vantrangforrent.com"
                             width={800}
                             height={450}
                             className="w-full h-auto rounded-lg shadow-lg overflow-hidden"
@@ -262,7 +262,7 @@ export default function HomePage() {
                             >
                                 <Image
                                     src={service.image}
-                                    alt={service.title}
+                                    alt={`รถตู้เช่าตรัง รุ่น ${service.title}`}
                                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                                     width={500}
                                     height={192}
