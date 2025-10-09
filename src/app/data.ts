@@ -5,7 +5,7 @@ export const services = [
         title: 'Toyota Hiace',
         category: 'hiace',
         price: '2,500 บาท/วัน',
-        image: '/Hiace.jpg',
+        image: '/hiace.jpg',
         features: ['ภายในหรูหรา', 'นั่งสบาย', 'แอร์เย็น', 'รถใหม่']
     },
     {
@@ -33,14 +33,14 @@ export const testimonials = [
 
 export const carSlides = [
     // Hiace
-    { id: 1, image: "/Hiace.jpg", category: "hiace" },
-    { id: 2, image: "/Hiace2.jpg", category: "hiace" },
-    { id: 3, image: "/Hiace3.jpg", category: "hiace" },
-    { id: 4, image: "/Hiace4.jpg", category: "hiace" },
-    { id: 5, image: "/Hiace5.jpg", category: "hiace" },
-    { id: 6, image: "/Hiace6.jpg", category: "hiace" },
-    { id: 7, image: "/Hiace7.jpg", category: "hiace" },
-    { id: 8, image: "/Hiace8.jpg", category: "hiace" },
+    { id: 1, image: "/hiace.jpg", category: "hiace" },
+    { id: 2, image: "/hiace2.jpg", category: "hiace" },
+    { id: 3, image: "/hiace3.jpg", category: "hiace" },
+    { id: 4, image: "/hiace4.jpg", category: "hiace" },
+    { id: 5, image: "/hiace5.jpg", category: "hiace" },
+    { id: 6, image: "/hiace6.jpg", category: "hiace" },
+    { id: 7, image: "/hiace7.jpg", category: "hiace" },
+    { id: 8, image: "/hiace8.jpg", category: "hiace" },
 
     // Commuter
     { id: 9, image: "/commuterold.jpg", category: "commuter" },
