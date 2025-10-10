@@ -121,6 +121,21 @@ export const faqs = [
     }
 ];
 
+// Helper function to dynamically generate priceRange for schema
+const getPriceRange = (servicesData: typeof services): string => {
+    const prices = servicesData.flatMap(service =>
+        service.price.match(/\d{1,3}(,\d{3})*/g)?.map(p => parseInt(p.replace(/,/g, ''), 10)) || []
+    );
+    if (prices.length === 0) {
+        return "1800 - 8500 THB"; // Fallback
+    }
+    const minPrice = Math.min(...prices);
+    const maxPrice = Math.max(...prices);
+    return `${minPrice} - ${maxPrice} THB`;
+};
+
+const dynamicPriceRange = getPriceRange(services);
+
 // SEO Optimized Metadata
 export const metadata: Metadata = {
   title: "รถตู้เช่าตรัง(Southern Thailand Van Rental) | Trang Van Hire【No.1】",
@@ -333,7 +348,7 @@ export const jsonLd = {
         ],
       "award": "Amazing Thailand Safety and Health Administration (SHA)",
       "hasMap": "https://www.google.com/maps?cid=13813654561153556000",
-      "priceRange": "1800 - 8500 THB",
+      "priceRange": dynamicPriceRange,
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -365,6 +380,7 @@ export const jsonLd = {
             "itemOffered": {
               "@type": "Service",
               "name": "เช่ารถตู้ Toyota Hiace พร้อมคนขับ",
+              "url": "https://www.vantrangforrent.com/#services",
               "image": "https://www.vantrangforrent.com/hiace.jpg",
               "description": "เหมาะสำหรับกลุ่มเพื่อนและครอบครัวที่ต้องการความสบายและพื้นที่กว้างขวางในการเดินทาง",
               "keywords": "Toyota Hiace, รถตู้เช่า 10 ที่นั่ง",
@@ -388,6 +404,7 @@ export const jsonLd = {
             "itemOffered": {
               "@type": "Service",
               "name": "เช่ารถตู้ Toyota Commuter พร้อมคนขับ",
+              "url": "https://www.vantrangforrent.com/#services",
               "image": "https://www.vantrangforrent.com/commuterold.jpg",
               "description": "ตัวเลือกที่คุ้มค่าและเชื่อถือได้สำหรับกรุ๊ปทัวร์และการเดินทางที่ต้องการความคล่องตัว",
               "keywords": "Toyota Commuter, รถตู้เช่า 9 ที่นั่ง, รถตู้เช่าราคาถูก",
@@ -411,6 +428,7 @@ export const jsonLd = {
             "itemOffered": {
               "@type": "Service",
               "name": "เช่ารถตู้ VIP Toyota Alphard พร้อมคนขับ",
+              "url": "https://www.vantrangforrent.com/#services",
               "image": "https://www.vantrangforrent.com/alphardleft.jpg",
               "description": "ที่สุดแห่งความหรูหราและความเป็นส่วนตัวสำหรับผู้บริหาร, แขกคนสำคัญ, หรือวันพิเศษของคุณ", "keywords": "รถตู้ VIP ตรัง, รถ Alphard เช่าตรัง, รถตู้ผู้บริหาร",
               "serviceType": "บริการรถตู้เช่าพร้อมคนขับ",
@@ -433,6 +451,7 @@ export const jsonLd = {
             "itemOffered": {
               "@type": "Service",
               "name": "บริการรถตู้สำหรับโรงพยาบาล",
+              "url": "https://www.vantrangforrent.com/#contact",
               "description": "บริการรถตู้เช่าพร้อมคนขับสำหรับโรงพยาบาลโดยเฉพาะ สำหรับการรับ-ส่งผู้ป่วย, บุคลากรทางการแพทย์, หรือการเดินทางเพื่อดูงานและสัมมนาทางการแพทย์",
               "keywords": "รถตู้รับส่งผู้ป่วย, รถตู้เช่าโรงพยาบาล, บริการรถตู้ทางการแพทย์",
               "serviceType": "บริการรถตู้เช่าสำหรับองค์กร",
@@ -452,6 +471,7 @@ export const jsonLd = {
             "itemOffered": {
               "@type": "Service",
               "name": "บริการรถตู้สำหรับพันธมิตรธุรกิจ (โรงแรม, บริษัททัวร์)",
+              "url": "https://www.vantrangforrent.com/#contact",
               "description": "เรามีข้อเสนอพิเศษสำหรับพาร์ทเนอร์โรงแรมและบริษัททัวร์ที่ต้องการบริการรถตู้ที่เชื่อถือได้และเป็นมืออาชีพสำหรับรับ-ส่งแขกและลูกค้าคนสำคัญ",
               "keywords": "รถตู้สำหรับโรงแรม, รถตู้สำหรับบริษัททัวร์, B2B van service Thailand, corporate van rental",
               "serviceType": "บริการรถตู้เช่าสำหรับองค์กร",
@@ -471,6 +491,7 @@ export const jsonLd = {
             "itemOffered": {
               "@type": "Service",
               "name": "บริการรถตู้สำหรับองค์กรและอีเวนต์",
+              "url": "https://www.vantrangforrent.com/#contact",
               "description": "ให้บริการรถตู้เช่าสำหรับองค์กร, การเดินทางเพื่อธุรกิจ, การรับส่งพนักงาน, การจัดสัมมนา, และการบริการสำหรับกองถ่ายทำและงานอีเวนต์ทุกประเภท",              "keywords": "corporate van rental, event transportation, business travel van, employee shuttle service",
               "serviceType": "บริการรถตู้เช่าสำหรับองค์กร",
               "provider": {"@id": "https://www.vantrangforrent.com/#organization"}
